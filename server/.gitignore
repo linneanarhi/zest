@@ -1,0 +1,6 @@
+# Ignorera SQLite-databasfiler
+products.db
+*.sqlite 
+*.sqlite3
+*.db 
+*.db3
