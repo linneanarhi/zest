@@ -1,3 +1,5 @@
+import {Link} from 'react-router';
+
 function ProductList ({ products }) {
     //Returnerar JSX
     return (
@@ -9,7 +11,7 @@ function ProductList ({ products }) {
                     <div>
                     key={product.id} 
                     <h2>{product.productName}</h2>
-                    <img src={product.image}></img>
+                    <Link to={`/productdetails/${products.id}`}> <img src={product.image}></img></Link>
                     <span>{product.description}</span>
                     <span>{product.brand}</span>
                     <span>{product.price}</span>
