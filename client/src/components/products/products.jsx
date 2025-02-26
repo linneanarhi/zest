@@ -4,7 +4,7 @@ function ProductList ({ products }) {
     //Returnerar JSX
     return (
         <div>
-            <h1 className="text-3xl mb-3">Produkter</h1>
+            <h1>Produkter</h1>
             <span>Du har {products.length} produkter i korgen</span>
             <div>
                 {products.map((product) => (
