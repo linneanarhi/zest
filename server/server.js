@@ -9,7 +9,7 @@ const db = new Database("./db/products.db", {
 
 app.get("/api/products", (req, res) => {
 
-    const select = db.prepare("SELECT id, productName, description, image, SKU, price, brand, publishDate FROM products");
+    const select = db.prepare("SELECT id, productName, description, image, SKU, price, brand, publishDate FROM products LIMIT 8");
     const products = select.all();
 
     res.json(products);
