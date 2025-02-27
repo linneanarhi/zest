@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import '../../App.css'
 import ProductList from '../../components/products/products';
+import Header from '../../components/Header/header';
+
 
 function Home() {
 
@@ -22,7 +24,7 @@ function Home() {
 
   return (
     <>
-    
+      <Header/>
       <ProductList products={products} />
 
 

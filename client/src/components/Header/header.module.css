@@ -4,19 +4,19 @@
     padding: 1rem;
   }
   
-  .navbar-container {
+  .navbarContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
   
-  .navbar-logo {
+  .navbarLogo {
     color: white;
     font-size: 1.25rem;
     font-weight: bold;
   }
   
-  .navbar-toggle {
+  .navbarToggle {
     font-size: 1.875rem; /* 3xl */
     color: white;
     background: none;
@@ -25,7 +25,7 @@
     
   }
   
-  .navbar-menu {
+  .navbarMenu {
     position: absolute;
     top: 4rem; /* Adjust for the navbar height */
     left: 0;
@@ -41,20 +41,20 @@
     transform: translateY(-200%);
   }
   
-  .navbar-menu.open {
+  .navbarMenu.open {
     transform: translateY(0);
   }
   
-  .navbar-link {
+  .navbarLink {
     text-decoration: none;
     color: white;
     transition: underline 0.3s ease-in-out;
   }
   
-  .navbar-link:hover {
+  .navbarLink:hover {
     text-decoration: underline;
   }
 
-  .catagory-desktop{
+  .catagoryDesktop{
     display: none;
   }
