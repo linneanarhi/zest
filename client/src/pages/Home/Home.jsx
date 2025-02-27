@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import '../../App.css'
 import ProductList from '../../components/products/products';
 import Header from '../../components/Header/header';
-
+import Footer from '../../components/Footer/footer';
 
 function Home() {
 
@@ -26,7 +26,7 @@ function Home() {
     <>
       <Header/>
       <ProductList products={products} />
-
+      <Footer/>
 
     </>
   )
