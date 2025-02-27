@@ -1,10 +1,4 @@
 
-import { useState, useEffect } from 'react';
-import './App.css'
-import ProductList from './components/products/products';
-import Header from './components/Header/header';
-
-
 import Home from './pages/Home/Home';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
 import SearchResult from './pages/Home/SearchResult';
@@ -13,8 +7,6 @@ import Checkout from './pages/Home/Checkout';
 import AdminProducts from './pages/Admin/AdminProducts';
 import New from './pages/Admin/New';
 
-
-import './App.css';
 import { BrowserRouter, Routes, Route} from 'react-router';
 
 function App() {
@@ -22,10 +14,6 @@ function App() {
   return (
     <>
 
-
-      <Header/>
-
-      <ProductList products={products} />
 
       <BrowserRouter>
         <Routes>

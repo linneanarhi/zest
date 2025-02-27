@@ -1,45 +1,51 @@
 import { useState } from "react";
-import './header.css';
+import styles from './header.module.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";  // För "regular" ikoner
-import { faBagShopping } from "@fortawesome/free-solid-svg-icons";
+import { faBagShopping,faHeart,faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+
+
 
 function Header () {
     const [isOpen, setIsOpen] = useState(false);
     //Returnerar JSX
         return (
             <div>
-            <nav className="navbar">
-              <div className="navbar-container">
+            <nav className={styles.navbar}>
+              <div className={styles.navbarContainer}>
                 {/* Hamburger button (for mobile) */}
                 <button
-                  className="navbar-toggle"
+                  className={styles.navbarToggle}
                   onClick={() => setIsOpen(!isOpen)}
                 >
                   ☰
                 </button>
         
                 {/* Menu items */}
-                <ul className={`navbar-menu ${isOpen ? "open" : ""}`}>
-                  <ol><a href="/" className="navbar-olnk">Nyheter</a></ol>
-                  <ol><a href="/about" className="navbar-olnk">Topplistan</a></ol>
-                  <ol><a href="/contact" className="navbar-olnk">REA</a></ol>
-                  <ol><a href="/contact" className="navbar-olnk">Kampanjer</a></ol>
+                <ul className={`${styles["navbarMenu"]} ${isOpen ? styles.open : ""}`}>
+                  <ol><a href="/" className={styles.navbarLink}>Nyheter</a></ol>
+                  <ol><a href="/about" className={styles.navbarLink}>Inredning</a></ol>
+                  <ol><a href="/contact" className={styles.navbarLink}>Belysning</a></ol>
+                  <ol><a href="/contact" className={styles.navbarLink}>Möbler</a></ol>
                 </ul>
               </div>
             </nav>
             <img src="/image/zest3.png" alt="ZEST" />
            <div>
-           <FontAwesomeIcon icon={faHeart} />
            <FontAwesomeIcon icon={faBagShopping} />
+           <FontAwesomeIcon icon={faHeart} />
+           </div>
+
+           <div>
+            <input type="text" placeholder="search.." />
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
            </div>
           
-        <div className="catagory-desktop">
+        <div className={styles.catagoryDesktop}>
            <ul >
             <ol>Nyheter</ol>
-            <ol>Topplistan</ol>
-            <ol>REA</ol>
-            <ol>Kampanjer</ol>
+            <ol>Inredning</ol>
+            <ol>Belysning</ol>
+            <ol>Möbler</ol>
            </ul>
 
         </div>
