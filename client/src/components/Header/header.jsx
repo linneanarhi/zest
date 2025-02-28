@@ -1,64 +1,66 @@
 import { useState } from "react";
-import styles from './header.module.css';
+import styles from "./header.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBagShopping,faHeart,faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBagShopping,
+  faHeart,
+  faMagnifyingGlass,
+} from "@fortawesome/free-solid-svg-icons";
 
+function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+  //Returnerar JSX
+  return (
+    <>
+      {/*MOBIL*/}
 
-
-function Header () {
-    const [isOpen, setIsOpen] = useState(false);
-    //Returnerar JSX
-        return (
-          <>         
-            {/*MOBIL*/}
-            <div>
-            <nav className={styles.navbar}>
-              <div className={styles.navbarContainer}>
-                {/* Hamburger button (for mobile) */}
-                <button
-                  className={styles.navbarToggle}
-                  onClick={() => setIsOpen(!isOpen)}
-                >
-                  ☰
-                </button>
+      <nav className={styles.navbar}>
         
-                {/* Menu items */}
-                <ul className={`${styles["navbarMenu"]} ${isOpen ? styles.open : ""}`}>
-                  <ol><a href="/" className={styles.navbarLink}>Nyheter</a></ol>
-                  <ol><a href="/about" className={styles.navbarLink}>Inredning</a></ol>
-                  <ol><a href="/contact" className={styles.navbarLink}>Belysning</a></ol>
-                  <ol><a href="/contact" className={styles.navbarLink}>Möbler</a></ol>
-                </ul>
-              </div>
-            </nav>
-            <img src="/image/zest3.png" alt="ZEST" />
-           <div>
-           <FontAwesomeIcon icon={faBagShopping} />
-           <FontAwesomeIcon icon={faHeart} />
-           </div>
+          {/* Hamburger button (for mobile) */}
+          <button
+            className={styles.navbarToggle}
+            onClick={() => setIsOpen(!isOpen)}
+            
+          >
+            ☰
+          </button>
+          <div className={styles.imageLogo}>
+          <img className={styles.logo} src="/image/zest3.png" alt="ZEST" />
+          </div>
+          <div className={styles.headerIcon}>
+            <FontAwesomeIcon icon={faBagShopping} />
+            <FontAwesomeIcon icon={faHeart} />
 
-           <div>
             <input type="text" placeholder="search.." />
             <FontAwesomeIcon icon={faMagnifyingGlass} />
-           </div>
-          
+          </div>
 
+          {/* Menu items */}
+          <ul
+            className={`${styles["navbarMenu"]} ${isOpen ? styles.open : ""}`}
+          >
+            
+              <li>Nyheter</li>
+              <li>Inredning</li>
+              <li>Belysning</li>
+              <li>Möbler</li>
+            
+          </ul>
+        
+      </nav>
 
-          {/*DESKTOP*/}
+      {/*DESKTOP*/}
 
-        <div className={styles.catagoryDesktop}>
-           <ul >
-            <ol>Nyheter</ol>
-            <ol>Inredning</ol>
-            <ol>Belysning</ol>
-            <ol>Möbler</ol>
-           </ul>
-
-        </div>
-        </div>
-      </>  
-    );
+      <div className={styles.catagoryDesktop}>
+        <ul>
+          <li>Nyheter</li>
+          <li>Inredning</li>
+          <li>Belysning</li>
+          <li>Möbler</li>
+        </ul>
+      </div>
+    </>
+  );
 }
 
-
-export default Header; 
+export default Header;
