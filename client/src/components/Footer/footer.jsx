@@ -8,8 +8,9 @@ function Footer () {
 
     return (
         
-
         <>
+
+        <footer>
         <div>
         <FontAwesomeIcon icon={faInstagram} />
         <FontAwesomeIcon icon={faSquareFacebook} />
@@ -48,8 +49,7 @@ function Footer () {
         </Accordion.Body>
       </Accordion.Item>
     </Accordion>
-          
-        <div>About</div><div>My pages</div><div>Contact</div>
+        </footer>
         </>
     )
 }

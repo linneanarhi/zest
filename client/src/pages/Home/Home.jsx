@@ -25,7 +25,9 @@ function Home() {
   return (
     <>
       <Header/>
+      <main>
       <ProductList products={products} />
+      </main>
       <Footer/>
 
     </>

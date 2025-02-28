@@ -9,6 +9,8 @@ function Header () {
     const [isOpen, setIsOpen] = useState(false);
     //Returnerar JSX
         return (
+          <>         
+            {/*MOBIL*/}
             <div>
             <nav className={styles.navbar}>
               <div className={styles.navbarContainer}>
@@ -40,6 +42,10 @@ function Header () {
             <FontAwesomeIcon icon={faMagnifyingGlass} />
            </div>
           
+
+
+          {/*DESKTOP*/}
+
         <div className={styles.catagoryDesktop}>
            <ul >
             <ol>Nyheter</ol>
@@ -50,6 +56,7 @@ function Header () {
 
         </div>
         </div>
+      </>  
     );
 }
 
