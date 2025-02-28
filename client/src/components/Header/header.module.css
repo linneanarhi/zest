@@ -1,30 +1,57 @@
 /* Navbar.css */
 .navbar {
+    width: 100%;
+    height: 100px;
     background-color: #A4BDF5; /* blue-500 */
     padding: 1rem;
-  }
-  
-  .navbarContainer {
+    z-index: 2;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-  }
-  
-  .navbarLogo {
-    color: white;
-    font-size: 1.25rem;
-    font-weight: bold;
+    justify-content: center; /* Centrera innehållet */
+    position: relative;
   }
   
   .navbarToggle {
+    
     font-size: 1.875rem; /* 3xl */
-    color: white;
+    color: whitesmoke;
     background: none;
     border: none;
     cursor: pointer;
+    position: absolute;
+    left: 1rem;
+  }
+
+  .imageLogo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .logo {
+    
+    width: 100px;
+    height: 100px;
+    
     
   }
   
+  .headerIcon {
+    display: flex;
+    font-size: 1.5rem;
+    color: whitesmoke;
+    gap: 16px;
+    position: absolute;
+    right: 1rem;
+  }
+
+  input {
+    display: none;
+  }
+
   .navbarMenu {
     position: absolute;
     top: 4rem; /* Adjust for the navbar height */
@@ -37,18 +64,20 @@
     align-items: center;
     gap: 1rem;
     padding: 1rem;
-    transition: transform 0.3s ease-in-out;
+   
     transform: translateY(-200%);
   }
   
   .navbarMenu.open {
-    transform: translateY(0);
+    transform: translateY(18%);
+    z-index: 1;
   }
   
   .navbarLink {
     text-decoration: none;
     color: white;
-    transition: underline 0.3s ease-in-out;
+    
+    z-index: 1;
   }
   
   .navbarLink:hover {
@@ -58,3 +87,9 @@
   .catagoryDesktop{
     display: none;
   }
+
+ ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+ }
