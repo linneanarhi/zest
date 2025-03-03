@@ -32,10 +32,12 @@
 }
 
 .productContainer:hover .productImage {
+    
     opacity: 0.3;
 }
 
 .productContainer:hover .overlay {
+    
     opacity: 1;
 } 
 
