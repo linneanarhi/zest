@@ -1,8 +1,7 @@
 import video from "../../../Images/Video/7971cf3b-3ab260cf.mp4";
 import styles from "./hero.module.css";
-import { useEffect, useRef, useState } from "react";
-import { IconContext } from "react-icons";
-import { BiPlay, BiSkipNext, BiSkipPrevious, BiPause } from "react-icons/bi";
+import { useRef, useState } from "react";
+
 
 function Hero() {
     

@@ -1,3 +1,12 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box; /* För att säkerställa att padding och border inte påverkar den totala storleken */
+  }
+
 main {
     background-color: #E0DBE0;
+    font-family: 'Roboto', sans-serif; 
 }
