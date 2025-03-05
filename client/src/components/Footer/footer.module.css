@@ -1,3 +1,8 @@
+footer {
+    color: whitesmoke;
+    background-color: #A4BDF5
+}
+
 .follow {
     text-align: center;
     margin: 20px 0;
@@ -17,6 +22,11 @@
     text-align: center;
     
  }
+
+ .footerList {
+    display: none;
+ }
+
 
  @media (min-width: 640px) {
 

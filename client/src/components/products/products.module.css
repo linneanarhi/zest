@@ -42,14 +42,14 @@
 } 
 
 h2, span {
-    color: rgb(0, 0, 0);
+    color: #F18743;
     font-size: 16px;
     padding: 16px 32px;
     
   }
 
 .productLink {
-    color: black;
+    color: #F18743;
     text-decoration: none;
 }
   
