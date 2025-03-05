@@ -1,15 +1,14 @@
 .videoContainer {
     display: flex;
     justify-content: center;
-}
-
-.videoPlayer {
-    
+    width: 100%; 
+    padding: 20px; 
+    box-sizing: border-box; 
+    overflow: hidden; 
+  }
+  
+  .videoPlayer {
     width: 100%;
-   
-    padding: 20px;
-}
-
-
-
-
+    height: 100%;
+    object-fit: cover; 
+  }

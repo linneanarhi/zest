@@ -20,8 +20,9 @@ function Footer () {
         </div>
 
 {/*ACCORDION*/}
+<div className={styles.mobileAccordion}>
 <Accordion />
-
+</div>
       
     <div className={styles.footerList}>
 
