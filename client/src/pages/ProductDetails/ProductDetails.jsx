@@ -1,28 +1,33 @@
-import {useEffect, useState} from 'react';
-import {useParams} from 'react-router';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 function ProductDetails() {
-
   let params = useParams();
-  const [products, setProducts] = useState(null);
+  const [product, setProduct] = useState(null);
 
-  useEffect (() => {
-    fetch(`/api/products/${params.id}`)
-    .then((resp) => resp.json())
-    .then((products) => {
-      setProducts(products);
-    });
-  }, []);
+  useEffect(() => {
+    console.log("Product ID från URL:", params.id); // Kontrollera att det inte är undefined
 
-    return products ? (
-      <>
-      <header>
-        <h1>{products.productName}</h1>
-        </header>
+    if (!params.id) return;
 
-      
-      </>
-    ) : "Laddar...";
-  }
-  
-  export default ProductDetails;
+    fetch(`/api/products/${params.id}`) // Fetch till den nya produktdetails-route
+      .then((response) => response.json())
+      .then((data) => {
+        setProduct(data);
+      })
+      .catch((err) => console.error("Fetch error:", err));
+  }, [params.id]);
+
+  return product ? (
+    <div>
+      <h1>{product.productName}</h1>
+      <p>{product.description}</p>
+      <p>Pris: {product.price} SEK</p>
+      <img src={product.image} alt={product.productName} />
+    </div>
+  ) : (
+    "Laddar..."
+  );
+}
+
+export default ProductDetails;
