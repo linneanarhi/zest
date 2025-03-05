@@ -20,38 +20,8 @@ function Footer () {
         <FontAwesomeIcon icon={faTiktok} />
         </div>
 
-        <div className={styles.mobileAccordion}>
-        <Accordion>
-      <Accordion.Item  eventKey="0" >
-        <Accordion.Header >About</Accordion.Header>
-        <Accordion.Body>
-          <ul>
-            <li>Our Story</li>
-          </ul>
-          
-        </Accordion.Body>
-      </Accordion.Item>
-      <Accordion.Item eventKey="1">
-        <Accordion.Header>My Pages</Accordion.Header>
-        <Accordion.Body>
-          <ul>
-            <li>Log In</li>
-          </ul>
-          
-        </Accordion.Body>
-      </Accordion.Item>
-      <Accordion.Item eventKey="2">
-        <Accordion.Header>Contact</Accordion.Header>
-        <Accordion.Body>
-          <ul>
-            <li>Return Policy</li>
-            <li>Contact Us</li>
-          </ul>
-          
-        </Accordion.Body>
-      </Accordion.Item>
-    </Accordion>
-    </div>
+    
+
 
       
     <div className={styles.footerList}>

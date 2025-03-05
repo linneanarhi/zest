@@ -25,15 +25,12 @@ function Home() {
 
   return (
     <>
-
-      <header>
-      <Header/>
-      <Hero/>
-      </header>
       <main>
-      <ProductList products={products} />
+        <Header/>
+        <Hero/>
+        <ProductList products={products} />
+        <Footer/>
       </main>
-      <Footer/>
     </>
   )
 }
