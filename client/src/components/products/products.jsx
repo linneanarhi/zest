@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'; // Kom ihåg att använda react-router-dom
+import { Link } from 'react-router-dom'; 
 import styles from './products.module.css';
 
 function ProductList({ products }) {
@@ -7,7 +7,6 @@ function ProductList({ products }) {
       <div className={styles.productGrid}>
         {products.map((product) => (
           <div className={styles.productContainer} key={product.id}>
-            {/* Dynamisk länk med produktens ID */}
             <Link className={styles.productLink} to={`/productdetails/${product.id}`}>
               <img className={styles.productImage} src={product.image} alt={product.productName} />
               <div className={styles.overlay}>
