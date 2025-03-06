@@ -5,22 +5,22 @@ function Accordion() {
   const accordionData = [
     {
       title: 'About',
-      content: 'Our story'
+      content: ['Our story']
     },
     {
       title: 'My pages',
-      content: 'Log in'
+      content: ['Log in']
     },
     {
       title: 'Contact',
-      content: 'Return Policy\nContact Us'
+      content: ['Return Policy', 'Contact Us']
     }
   ];
 
   const [activeIndex, setActiveIndex] = useState(null);
 
-  const toggleAccordion = index => {
-    setActiveIndex(activeIndex === index ? null : index); {/*activeIndex håller koll på vilken som är öppen (aktiv) så bara den visas */}
+  const toggleAccordion = (index) => {
+    setActiveIndex(activeIndex === index ? null : index);
   };
 
   return (
@@ -34,7 +34,13 @@ function Accordion() {
             <div>{item.title}</div>
             <div>{activeIndex === index ? '-' : '+'}</div>
           </div>
-          {activeIndex === index && <div className={styles.accordionContent}>{item.content}</div>}
+          {activeIndex === index && (
+            <div className={styles.accordionContent}>
+              {item.content.map((line, i) => (
+                <p key={i}>{line}</p>
+              ))}
+            </div>
+          )}
         </div>
       ))}
     </div>
