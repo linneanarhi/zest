@@ -5,7 +5,7 @@ function ProductList ({ products }) {
     //Returnerar JSX
     return (
         <div>
-            <Link className={styles.productLink} to={`/productdetails/${products.id}`}>
+            <a href='ProductDetails' className={styles.productLink} to={`/productdetails/${encodeURIComponent(products.productName)}`}>
                 <div className={styles.productGrid}>
                     {products.map((product) => (
                         <div className={styles.productContainer}> 
@@ -20,7 +20,7 @@ function ProductList ({ products }) {
                       
                     ))}
                 </div>
-            </Link> 
+            </a> 
         </div>
         
        

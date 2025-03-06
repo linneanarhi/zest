@@ -1,14 +1,17 @@
-import {Link} from 'react-router';
 import { useState, useEffect } from 'react';
-import '../../App.css'
-import styles from "./ProductDetails.module.css";
+import { useParams } from 'react-router-dom'; // För att hämta parametrar från URL:en
 
+const ProductDetails = () => {
+  const { productName } = useParams(); // Hämtar 'productName' från URL-parametern
+console.log(productName);
 
-function productDetails() {
+useEffect(() => {
 
-    return (
-        <>
+}, [productName]);
 
-        </>
-    )
-}
+return <div>Product</div>
+
+ 
+};
+
+export default ProductDetails;

@@ -15,6 +15,8 @@ app.get("/api/products", (req, res) => {
     res.json(products);
 });
 
+
+
 app. listen(port, () => {
     console.log("Server started on port 8000");
 });
