@@ -1,7 +1,10 @@
+@import url('https://fonts.cdnfonts.com/css/helvetica-neue-55');
+
 footer {
     background-color: #A4BDF5;
     color: whitesmoke;
     padding: 20px;
+    font-family: 'Helvetica Neue 55', sans-serif;
 }
 
 .follow {

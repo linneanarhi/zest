@@ -13,7 +13,6 @@ function Header() {
   return (
     <>
       {/*MOBIL*/}
-
       <nav className={styles.navbar}>
         
           {/* Hamburger button (for mobile) */}
