@@ -17,11 +17,9 @@ footer {
     margin: 20px 0;
 }
 
-
 .copyright 
  {
     text-align: center;
-    
  }
 
  .footerList {
@@ -43,11 +41,8 @@ footer {
         align-content: center;
         margin: 20px;
         gap: 20px;
-        background-color: #A4BDF5;
-        
-        
+        background-color: #A4BDF5; 
     }
-
 
     .mobileAccordion {
         display: none;
@@ -56,7 +51,6 @@ footer {
     .footerDesktop {
         background-color: #A4BDF5;
         color: whitesmoke;
-        
     }
 
     .footerList{
@@ -69,9 +63,6 @@ footer {
     .footerList li {
        margin-top: 10px;
     }
-
-
-
  }
 
 

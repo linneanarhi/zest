@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: 1fr;
     padding: 20px;
+    gap: 10px;
 }
 
 .productContainer {
@@ -41,7 +42,6 @@ h2, span {
     color: #F18743;
     text-transform: uppercase;
     padding: 16px 32px;
-    
   }
 
 .productLink {
