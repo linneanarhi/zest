@@ -13,15 +13,14 @@ function Accordion() {
     },
     {
       title: 'Contact',
-      content: ['Return Policy, Contact Us']
-      
+      content: ['Return Policy', 'Contact Us']
     }
   ];
 
   const [activeIndex, setActiveIndex] = useState(null);
 
-  const toggleAccordion = index => {
-    setActiveIndex(activeIndex === index ? null : index); {/*activeIndex håller koll på vilken som är öppen (aktiv) så bara den visas */}
+  const toggleAccordion = (index) => {
+    setActiveIndex(activeIndex === index ? null : index);
   };
 
   
@@ -37,7 +36,13 @@ function Accordion() {
             <div>{item.title}</div>
             <div>{activeIndex === index ? '-' : '+'}</div>
           </div>
-          {activeIndex === index && <div className={styles.accordionContent}>{item.content}</div>}
+          {activeIndex === index && (
+            <div className={styles.accordionContent}>
+              {item.content.map((line, i) => (
+                <p key={i}>{line}</p>
+              ))}
+            </div>
+          )}
         </div>
       ))}
     </div>
