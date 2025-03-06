@@ -1,16 +1,14 @@
 .videoContainer {
     display: flex;
     justify-content: center;
-    background-color: #F8F8F8; 
-}
-
-.videoPlayer {
-    
+    width: 100%; 
+    padding: 20px; 
+    box-sizing: border-box; 
+    overflow: hidden; 
+  }
+  
+  .videoPlayer {
     width: 100%;
-   
-    padding: 20px;
-}
-
-
-
-
+    height: 100%;
+    object-fit: cover; 
+  }

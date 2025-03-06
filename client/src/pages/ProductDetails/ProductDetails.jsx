@@ -1,87 +1,33 @@
-import {useEffect, useState} from 'react';
-import {useParams} from 'react-router';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-const ProductDetails = () => {
-  const { productName } = useParams(); // Hämta produktnamnet från URL
+function ProductDetails() {
+  let params = useParams();
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    // Hämta produktinformation från backend via API
-    const fetchProduct = async () => {
-      try {
-        const response = await fetch(`/api/product/${productName}`);
-        if (response.ok) {
-          const data = await response.json();
-          setProduct(data);
-        } else {
-          // Visa fel om produkten inte finns
-          console.error('Produkt hittades inte');
-          setProduct(null); // För att hantera när produkten inte finns
-        }
-      } catch (error) {
-        console.error('Något gick fel vid hämtning av produktdata:', error);
-      }
-    };
-  
-    fetchProduct();
-  }, [productName]); // Kör om vid ändrad URL
-  if (!product) {
-    return <div>Laddar produkt...</div>;
-  }
+    console.log("Product ID från URL:", params.id); // Kontrollera att det inte är undefined
 
-  return (
+    if (!params.id) return;
+
+    fetch(`/api/products/${params.id}`) // Fetch till den nya produktdetails-route
+      .then((response) => response.json())
+      .then((data) => {
+        setProduct(data);
+      })
+      .catch((err) => console.error("Fetch error:", err));
+  }, [params.id]);
+
+  return product ? (
     <div>
       <h1>{product.productName}</h1>
       <p>{product.description}</p>
-      <p>Pris: ${product.price}</p>
+      <p>Pris: {product.price} SEK</p>
+      <img src={product.image} alt={product.productName} />
     </div>
+  ) : (
+    "Laddar..."
   );
-};
- /*  const [products, setProducts] = useState(null);
+}
 
-  useEffect (() => {
-    const fetchProduct = async () => {
-      try {
-        const response = await fetch('/api/products/${productName}');
-        const data = await response.json();
-        setProducts(data);
-
-      } catch(error) {
-        console.error("fel vid hämtning", error);
-      }
-    };
-    fetchProduct();
-  }, [productName]);
-
-  if (!product) return <p>Laddar produkt...</p>;
-
-  return (
-    <div>
-      <h1>{products.productName}</h1>
-      <img src={products.image} alt={products.productName} />
-      <p>{products.description}</p>
-      <p>Pris: {products.price} kr</p>
-    </div>
-  ); */
-
-
-   /*  fetch(`/api/products/${productName}`)
-    .then((resp) => resp.json())
-    .then((products) => {
-      setProducts(products);
-    });
-  }, []); */
-
- /*    return products ? (
-      <>
-      <header>
-        <h1>{productName}</h1>
-        <img src={products.image} alt={products.productName}/>
-        </header>
-
-      
-      </>
-    ) : "Laddar..."; */
-  
-  
-  export default ProductDetails;
+export default ProductDetails;

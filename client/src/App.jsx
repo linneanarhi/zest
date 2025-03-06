@@ -6,7 +6,7 @@ import ShoppingCart from './pages/Home/ShoppingCart';
 import Checkout from './pages/Home/Checkout';
 import AdminProducts from './pages/Admin/AdminProducts';
 import New from './pages/Admin/New';
-
+import 'typeface-roboto';
 import { BrowserRouter, Routes, Route} from 'react-router';
 
 function App() {

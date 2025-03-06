@@ -1,0 +1,25 @@
+.accordion {
+    width: auto;
+  }
+  
+  .accordionItem {
+    margin-bottom: 10px;
+  }
+  
+  .accordionTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #A4BDF5;
+    color: whitesmoke;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .accordionContent {
+    background-color: #A4BDF5;
+    color: whitesmoke;
+    padding: 10px;
+  }
+  
