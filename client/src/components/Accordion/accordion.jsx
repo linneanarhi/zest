@@ -5,15 +5,16 @@ function Accordion() {
   const accordionData = [
     {
       title: 'About',
-      content: 'Our story'
+      content: ['Our story']
     },
     {
       title: 'My pages',
-      content: 'Log in'
+      content: ['Log in']
     },
     {
       title: 'Contact',
-      content: 'Return Policy\nContact Us'
+      content: ['Return Policy, Contact Us']
+      
     }
   ];
 
@@ -22,6 +23,8 @@ function Accordion() {
   const toggleAccordion = index => {
     setActiveIndex(activeIndex === index ? null : index); {/*activeIndex håller koll på vilken som är öppen (aktiv) så bara den visas */}
   };
+
+  
 
   return (
     <div className={styles.accordion}>
