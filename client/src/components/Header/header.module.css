@@ -1,94 +1,105 @@
-/* Navbar.css */
-.navbar {
-    width: 100%;
-    height: 100px;
-    background-color: #A4BDF5; /* blue-500 */
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-  }
-  
-  .navbarToggle {
-    
-    font-size: 1.875rem; /* 3xl */
-    color: whitesmoke;
-    background: none;
-    border: none;
-    cursor: pointer;
-    position: absolute;
-    left: 1rem;
-  }
-
-  .imageLogo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .logo {
-    
-    width: 100px;
-    height: 100px;
-    
-    
-  }
-  
-  .headerIcon {
-    display: flex;
-    font-size: 1.5rem;
-    color: whitesmoke;
-    gap: 16px;
-    position: absolute;
-    right: 1rem;
-  }
-
-  input {
-    display: none;
-  }
-
-  .navbarMenu {
-    position: absolute;
-    top: 4rem; /* Adjust for the navbar height */
-    left: 0;
-    width: 100%;
-    background-color: #A4BDF5; /* blue-500 */
-    color: whitesmoke;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem;
-   
-    transform: translateY(-200%);
-  }
-  
-  .navbarMenu.open {
-    transform: translateY(18%);
-    z-index: 1;
-  }
-  
-  .navbarLink {
-    text-decoration: none;
-    color: white;
-    
-    z-index: 1;
-  }
-  
-  .navbarLink:hover {
-    text-decoration: underline;
-  }
-
-  .catagoryDesktop{
-    display: none;
-  }
-
- ul {
-  list-style-type: none;
+* {
   margin: 0;
   padding: 0;
- }
+  box-sizing: border-box;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.navbar {
+  height: 100px;
+  background-color: #A4BDF5;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.navbarToggle,
+.imageLogo,
+.headerIcon {
+  position: absolute;
+}
+
+.navbarToggle {
+  font-size: 1.875rem; /* 3xl */
+  color: whitesmoke;
+  background: none;
+  border: none;
+  cursor: pointer;
+  left: 1rem;
+}
+
+.imageLogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+}
+
+.headerIcon {
+  display: flex;
+  font-size: 1.5rem;
+  color: whitesmoke;
+  gap: 16px;
+  right: 1rem;
+}
+
+input {
+  display: none;
+}
+
+/* Menyinställningar */
+.navbarMenu {
+  position: absolute;
+  top: 100%; /* Exakt under navbaren */
+  left: 0;
+  width: 100vw;
+  background-color: #A4BDF5;
+  color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem; 
+  padding: 0.5rem; 
+  box-sizing: border-box;
+
+  /* Dölj menyn från start */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px); /* Lätt förflyttning för att skapa mjuk effekt */
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
+}
+
+.navbarMenu.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0s;
+}
+
+/* Länkar */
+.navbarLink {
+  text-decoration: none;
+  color: white;
+}
+
+.navbarLink:hover {
+  text-decoration: underline;
+}
+
+/* Dold desktop-kategori */
+.catagoryDesktop {
+  display: none;
+}
