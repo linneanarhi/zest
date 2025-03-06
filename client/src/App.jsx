@@ -18,7 +18,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<Home />} />
-          <Route path="/productdetails/:productName" element={<ProductDetails />} />
+          <Route path="/productdetails/:id" element={<ProductDetails />} />
           <Route path="/searchresult/:slug" element={<SearchResult />} />
           <Route path="/shoppingcart" element={<ShoppingCart />} />
           <Route path="/checkout" element={<Checkout />} />
