@@ -17,24 +17,7 @@ function Header() {
       {/* MOBIL */}
       <nav className={styles.navbar}>
 
-        
-          {/* Hamburger button (for mobile) */}
-          <button
-            className={styles.navbarToggle}
-            onClick={() => setIsOpen(!isOpen)}
-            
-          >
-            ☰
-          </button>
-          <div className={styles.imageLogo}>
-          <img className={styles.logo} src="/image/zest3.png" alt="ZEST" />
-          </div>
-          <div className={styles.headerIcon}>
-          <Link to="/shoppingcart">
-            <FontAwesomeIcon icon={faBagShopping} />
-            
-            </Link>
-            <FontAwesomeIcon icon={faHeart} />
+          
 
         {/* Hamburger button (for mobile) */}
         <button
@@ -58,11 +41,13 @@ function Header() {
         </div>
 
         <div className={styles.headerIcon}>
+        <Link to="/shoppingcart">
           <FontAwesomeIcon
             icon={faBagShopping}
             className={styles.icon}
             title="Varukorg"
           />
+          </Link>
           <FontAwesomeIcon
             icon={faHeart}
             className={styles.icon}
