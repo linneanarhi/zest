@@ -16,7 +16,7 @@ function ProductList({ products }) {
                 <span>{product.price} sek</span>
               </div>
             </Link>
-            <button className={styles.favoriteButton}>
+            <button className={styles.favoriteButton} title="Favorit">
               <FontAwesomeIcon icon={faHeart} />
             </button>
           </div>

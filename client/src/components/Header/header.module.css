@@ -55,6 +55,10 @@ ul {
   right: 1rem;
 }
 
+.icon {
+  cursor: pointer;
+}
+
 input {
   display: none;
 }
