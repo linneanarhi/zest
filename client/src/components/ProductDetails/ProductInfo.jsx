@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import "../../App.css";
 import styles from "./ProductInfo.module.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -75,8 +74,10 @@ function ProductInfo({ product, related }) {
     
       <h2 className={styles.relatedText}>Related Products</h2>
 
-      {/* Produktkort som alltid ska visas */}
       <div className={styles.relatedProductsGrid}>
+
+      {/* Produktkort som alltid ska visas */}
+      <div className={styles.hiddenProductsGrid}>
         {related.length > 0 ? (
           related.slice(0,5).map((relatedProduct) => (
             <div key={relatedProduct.id} className={styles.hiddenRelated}>
@@ -117,7 +118,7 @@ function ProductInfo({ product, related }) {
         </div>
         
       )}
-      
+      </div>
     </>
   );
 }

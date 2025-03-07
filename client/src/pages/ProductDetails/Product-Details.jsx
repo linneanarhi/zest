@@ -43,13 +43,18 @@ function ProductDetails() {
 
   return (
     <>
+     <main>
       <Header />
+     
       {product ? (
         <ProductInfo product={product} related={related} />
       ) : (
         <p>Laddar...</p>
+        
       )}
+      
       <Footer />
+      </main>
      
       
     </>
