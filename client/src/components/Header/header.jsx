@@ -6,6 +6,7 @@ import {
   faHeart,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +28,10 @@ function Header() {
           <img className={styles.logo} src="/image/zest3.png" alt="ZEST" />
           </div>
           <div className={styles.headerIcon}>
+          <Link to="/shoppingcart">
             <FontAwesomeIcon icon={faBagShopping} />
+            
+            </Link>
             <FontAwesomeIcon icon={faHeart} />
 
             <input type="text" placeholder="search.." />
