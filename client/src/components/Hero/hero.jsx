@@ -32,7 +32,7 @@ function Hero() {
         onClick={handlePlay}
         style = {{ cursor: "pointer" }}
       ></video>
-      <div class={styles.heroText}>
+      <div className={styles.heroText}>
             <h1>Lorem Ipsum</h1>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi labore explicabo aliquam illum, doloribus voluptate inventore velit officia. Nemo, consectetur. Consectetur fuga nihil at autem ratione maiores eius odio aperiam! </p>
         </div>
