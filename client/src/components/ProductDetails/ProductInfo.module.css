@@ -1,0 +1,112 @@
+
+
+.background {
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+  padding-left: 20px;
+  padding-right: 20px;
+
+}
+  
+.productImg{
+  width: 100%;
+}
+
+  .ProductInfo{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    height: auto;
+    margin: 20px 0;
+    
+  }
+
+
+  .relatedProductsGrid {
+    display: none;
+  }
+
+  .relatedText {
+    text-align: center;
+  }
+
+  .relatedSlider {
+    display: flex;
+    flex-direction: column;  /* Visa bilderna horisontellt */
+    
+    
+  }
+
+
+  .relatedItem {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
+    
+  }
+
+  .relatedImg {
+    
+    width: 100%;
+    height: auto;
+  }
+
+
+  
+
+  @media (min-width: 640px){
+
+
+    .ProductInfo{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+      height: auto;
+     
+    }
+
+    .ProductDetails {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      padding-left: 20px;
+      
+    }
+
+    .relatedProduct {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  @media (width >= 1024px) {
+
+    
+    .relatedProductsGrid {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      width: 100%;
+      height: auto;
+      
+      
+    }
+
+    .hiddenRelated {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      background-color: green;
+    
+    
+    } 
+
+     .relatedImg {
+      display: flex;
+      width: 100%;
+      height: auto;
+    }
+
+  
+  }

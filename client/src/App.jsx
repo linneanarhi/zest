@@ -1,6 +1,6 @@
 
 import Home from './pages/Home/Home';
-import ProductDetails from './pages/ProductDetails/ProductDetails';
+import ProductDetails from './pages/ProductDetails/Product-Details';
 import SearchResult from './pages/Home/SearchResult';
 import ShoppingCart from './pages/Home/ShoppingCart';
 import Checkout from './pages/Home/Checkout';
