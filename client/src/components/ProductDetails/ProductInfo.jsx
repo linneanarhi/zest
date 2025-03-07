@@ -5,10 +5,13 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faHeart,} from "@fortawesome/free-solid-svg-icons";
 
 function ProductInfo({ product, related }) {
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
@@ -39,7 +42,7 @@ function ProductInfo({ product, related }) {
 
   return (
     <>
-    <div className={styles.background}>
+    
       <div className={styles.ProductInfo}>
         <img
           src={product.image}
@@ -53,9 +56,17 @@ function ProductInfo({ product, related }) {
         <p>Pris: {product.price} SEK</p>
         
         
-        <Link to="/ShoppingCart">
+        <div>
+          
+          <button onClick={()=> setCount(count - 1)}disabled ={count===0}> - </button>
+          <span>
+          {count}
+          </span>
+          <button onClick={()=> setCount(count + 1)} > + </button>
+        
           <button className={styles.Shopping}>Add to cart</button>
-        </Link>
+          <FontAwesomeIcon icon={faHeart} />
+          </div>
         </div>
         </div>
       
@@ -87,7 +98,7 @@ function ProductInfo({ product, related }) {
         )}
       </div>
 
-      {/* Slider som endast visas om skärmstorleken är under 1024px */}
+      
       {windowWidth < 1024 && (
         <div className={styles.relatedSlider}>
           <Slider {...sliderSettings}>
@@ -106,7 +117,7 @@ function ProductInfo({ product, related }) {
         </div>
         
       )}
-      </div>
+      
     </>
   );
 }

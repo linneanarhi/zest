@@ -22,7 +22,7 @@ app.get("/api/products/:id", (req, res) => {
     const productId = req.params.id; 
     const select = db.prepare("SELECT id, productName, description, image, SKU, price, brand, publishDate FROM products WHERE id = ?");
     const product = select.get(productId);
-    const related = db.prepare("SELECT id, productName, description, image, SKU, price, brand, publishDate FROM products WHERE brand = ? LIMIT 3");
+    
    
 
     if (product) {

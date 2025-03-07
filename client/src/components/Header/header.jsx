@@ -16,6 +16,26 @@ function Header() {
     <>
       {/* MOBIL */}
       <nav className={styles.navbar}>
+
+        
+          {/* Hamburger button (for mobile) */}
+          <button
+            className={styles.navbarToggle}
+            onClick={() => setIsOpen(!isOpen)}
+            
+          >
+            ☰
+          </button>
+          <div className={styles.imageLogo}>
+          <img className={styles.logo} src="/image/zest3.png" alt="ZEST" />
+          </div>
+          <div className={styles.headerIcon}>
+          <Link to="/shoppingcart">
+            <FontAwesomeIcon icon={faBagShopping} />
+            
+            </Link>
+            <FontAwesomeIcon icon={faHeart} />
+
         {/* Hamburger button (for mobile) */}
         <button
           className={styles.navbarToggle}
@@ -24,6 +44,7 @@ function Header() {
         >
           {isOpen ? "✖" : "☰"}
         </button>
+
 
         <div className={styles.imageLogo}>
           <Link className={styles.productLink} to={`/`}>
