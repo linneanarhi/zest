@@ -61,9 +61,11 @@ footer {
         grid-template-columns: 1fr 1fr 1fr;
         padding: 40px;
         gap: 20px;
+        list-style-type: none;
     }
 
     .footerList li {
+        list-style-type: none;
        margin-top: 10px;
     }
  }
