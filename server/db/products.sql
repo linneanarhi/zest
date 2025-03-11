@@ -446,3 +446,4 @@ ALTER TABLE products ADD COLUMN slug TEXT;
 
 UPDATE products SET slug = LOWER(REPLACE(productName, ' ', '-'));
 
+alter table products drop column slug; 

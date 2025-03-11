@@ -4,8 +4,6 @@ import Header from "../../components/Header/header";
 import Footer from "../../components/Footer/footer";
 import ProductInfo from "../../components/ProductDetails/ProductInfo";
 
-
-
 function ProductDetails() {
   let params = useParams();
   const [product, setProduct] = useState(null);

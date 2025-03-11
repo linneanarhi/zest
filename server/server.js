@@ -4,18 +4,29 @@ const port = 8000;
 const app = express(); //Här är expressapplikationen vi skapat
 
 const db = new Database("./db/products.db", {
-    verbose: console.log,
+    verbose: console.log
 });
 
-
+function createSlug(productName) {
+    return productName.toLowerCase()
+        .replace(/\s+/g, '-')  // Ersätt mellanslag med bindestreck
+        .replace(/[^\w\-]+/g, '') // Ta bort icke-alfanumeriska tecken
+        .replace(/\-\-+/g, '-') // Ta bort dubbla bindestreck
+        .replace(/^-+/, '') // Ta bort bindestreck i början
+        .replace(/-+$/, ''); // Ta bort bindestreck i slutet
+}
 
 
 //till startsidan
 app.get("/api/products", (req, res) => {
 
-    const select = db.prepare("SELECT id, productName, description, image, SKU, price, brand, publishDate, slug FROM products LIMIT 8");
+    const select = db.prepare("SELECT id, productName, description, image, SKU, price, brand, publishDate FROM products LIMIT 8");
     const products = select.all();
 
+    products.forEach(product => {
+        product.slug = createSlug(product.productName);
+        console.log(`Genererad slug: ${product.slug} för produkt: ${product.productName}`);
+    });
 
     res.json(products);
 });
@@ -23,11 +34,13 @@ app.get("/api/products", (req, res) => {
 //till detaljsidan
 app.get("/api/products/:slug", (req, res) => {
     const slug = req.params.slug; 
-    const select = db.prepare("SELECT id, productName, description, image, SKU, price, brand, publishDate, slug FROM products WHERE slug = ?");
-    const product = select.get(slug);
+    const select = db.prepare("SELECT id, productName, description, image, SKU, price, brand, publishDate FROM products");
+    const products = select.all();
     
-   
-
+    
+    const product = products.find(p => createSlug(p.productName) === slug);
+    
+    console.log(`Genererad slug: ${product.slug} för produkt: ${product.productName}`);
     if (product) {
         res.json(product); 
     } else {
