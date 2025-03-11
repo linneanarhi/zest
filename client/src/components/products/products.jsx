@@ -9,7 +9,7 @@ function ProductList({ products }) {
       <div className={styles.productGrid}>
         {products.map((product) => (
           <div className={styles.productContainer} key={product.id}>
-            <Link className={styles.productLink} to={`/productdetails/${product.id}`}>
+            <Link className={styles.productLink} to={`/productdetails/${product.slug}`}>
               <img className={styles.productImage} src={product.image} alt={product.productName} />
               <div className={styles.overlay}>
                 <h2>{product.productName}</h2>
