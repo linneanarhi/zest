@@ -25,12 +25,12 @@ function Home() {
 
   return (
     <>
-      <main>
+      
         <Header/>
         <Hero/>
         <ProductList products={products} />
         <Footer/>
-      </main>
+      
     </>
   )
 }
