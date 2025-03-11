@@ -76,6 +76,8 @@ input.open {
   top: 100px; 
   left: 0;
   width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
   background-color: #A4BDF5;
   color: whitesmoke;
   display: flex;
@@ -95,6 +97,7 @@ input.open {
 .navbarMenu.open {
   opacity: 1;
   visibility: visible;
+  overflow-x: hidden;
   transform: translateY(0);
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0s;
 }
