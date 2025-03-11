@@ -8,20 +8,23 @@ const db = new Database("./db/products.db", {
 });
 
 
+
+
 //till startsidan
 app.get("/api/products", (req, res) => {
 
-    const select = db.prepare("SELECT id, productName, description, image, SKU, price, brand, publishDate FROM products LIMIT 8");
+    const select = db.prepare("SELECT id, productName, description, image, SKU, price, brand, publishDate, slug FROM products LIMIT 8");
     const products = select.all();
+
 
     res.json(products);
 });
 
 //till detaljsidan
-app.get("/api/products/:id", (req, res) => {
-    const productId = req.params.id; 
-    const select = db.prepare("SELECT id, productName, description, image, SKU, price, brand, publishDate FROM products WHERE id = ?");
-    const product = select.get(productId);
+app.get("/api/products/:slug", (req, res) => {
+    const slug = req.params.slug; 
+    const select = db.prepare("SELECT id, productName, description, image, SKU, price, brand, publishDate, slug FROM products WHERE slug = ?");
+    const product = select.get(slug);
     
    
 

@@ -441,3 +441,8 @@ INSERT INTO products (
     'HAY',
     '2025-03-04'
 );
+
+ALTER TABLE products ADD COLUMN slug TEXT;
+
+UPDATE products SET slug = LOWER(REPLACE(productName, ' ', '-'));
+
