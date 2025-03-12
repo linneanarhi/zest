@@ -20,7 +20,7 @@ function createSlug(productName) {
 //till startsidan
 app.get("/api/products", (req, res) => {
 
-    const select = db.prepare("SELECT id, productName, description, image, SKU, price, brand, publishDate FROM products LIMIT 8");
+    const select = db.prepare("SELECT id, productName, description, image, SKU, price, brand, publishDate FROM products ORDER BY RANDOM() LIMIT 8");
     const products = select.all();
 
     products.forEach(product => {
