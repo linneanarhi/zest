@@ -41,6 +41,12 @@ app.get("/api/search", (req, res) => {
     const select = db.prepare("SELECT id, productName, description, image, SKU, price, brand, publishDate FROM products WHERE productName LIKE ?");
     const products = select.all(`%${query}%`); // Hämta produkter som matchar sökningen
 
+        // Generera slug för varje produkt
+    products.forEach((product) => {
+        product.slug = createSlug(product.productName); // Skapa slug baserat på produktnamnet
+        console.log("Generated slug:", product.slug); // Kontrollera vad som genereras
+    });
+
     res.json(products);
 });
 
