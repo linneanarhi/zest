@@ -19,7 +19,7 @@ function App() {
         <Routes>
           <Route index element={<Home />} />
           <Route path="/productdetails/:slug" element={<ProductDetails />} />
-          <Route path="/searchresult/:slug" element={<SearchResult />} />
+          <Route path="/search" element={<SearchResult />} />
           <Route path="/shoppingcart" element={<ShoppingCart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/admin/adminproducts" element={<AdminProducts />} />
