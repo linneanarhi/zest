@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./header.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -6,11 +6,34 @@ import {
   faHeart,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+
+import { Link,useNavigate } from "react-router-dom";
+
+
+
+
+
+
+
+
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false); // Hanterar synligheten av sökrutan
+
+
+  const [query, setQuery] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter" && query.trim() !== "") {
+      navigate(`/search?q=${query.trim()}`); // Navigera till söksidan med query som URL-parameter
+    }
+  };
+  
+  
+
 
   return (
     <>
@@ -57,9 +80,13 @@ function Header() {
           {/* Sökrutan */}
           {searchOpen && (
             <input 
-              type="text" 
-              placeholder="Sök..." 
-              className={`${styles.searchInput} ${searchOpen ? styles.open : ""}`}/>
+            type="text"
+            placeholder="Search..."
+            className={`${styles.searchInput} ${searchOpen ? styles.open : ""}`}
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={handleKeyPress} // Lyssna på Enter
+               />
           )}
           
           <div 
@@ -88,8 +115,13 @@ function Header() {
           <li>Möbler</li>
         </ul>
       </div>
+  
+
+
     </>
   );
+
+  
 }
 
 export default Header;

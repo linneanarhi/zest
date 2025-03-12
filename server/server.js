@@ -31,6 +31,20 @@ app.get("/api/products", (req, res) => {
     res.json(products);
 });
 
+//sökresultat
+app.get("/api/search", (req, res) => {
+    const query = req.query.q; // Hämta sökfrågan från frontend
+    if (!query) {
+        return res.status(400).json({ error: "Ingen sökfråga angiven" });
+    }
+
+    const select = db.prepare("SELECT id, productName, description, image, SKU, price, brand, publishDate FROM products WHERE productName LIKE ?");
+    const products = select.all(`%${query}%`); // Hämta produkter som matchar sökningen
+
+    res.json(products);
+});
+
+
 //till detaljsidan
 app.get("/api/products/:slug", (req, res) => {
     const slug = req.params.slug; 
