@@ -1,12 +1,14 @@
+-- database: c:\workspace\javascript2\zest\server\db\products.db
+
 CREATE TABLE products (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    productName TEXT UNIQUE,
+    productName TEXT UNIQUE REQUIRED,
     description TEXT,
-    image TEXT,
-    SKU TEXT, 
-    price INTEGER,
-    brand TEXT,
-    publishDate DATETIME
+    image TEXT REQUIRED UNIQUE,
+    SKU TEXT REQUIRED, 
+    price INTEGER ,
+    brand TEXT ,
+    publishDate INTEGER
 );
 
 
@@ -25,7 +27,7 @@ INSERT INTO products (
     'AAA123',
     '1299',
     'HAY',
-    '2025-02-18'
+    '1710355200'
 );
 
 INSERT INTO products (
@@ -43,7 +45,7 @@ INSERT INTO products (
     'AAA123',
     '709',
     'HAY',
-    '2025-02-18'
+    '1710355200'
 );
 
 INSERT INTO products (
@@ -61,7 +63,7 @@ INSERT INTO products (
     'AAA123',
     '1049',
     'HAY',
-    '2025-02-18'
+    '1710355200'
 );
 
 INSERT INTO products (
@@ -79,7 +81,7 @@ INSERT INTO products (
     'AAA123',
     '2299',
     'HAY',
-    '2025-02-18'
+    '1710355200'
 );
 
 INSERT INTO products (
@@ -97,7 +99,7 @@ INSERT INTO products (
     'AAA123',
     '2299',
     'HAY',
-    '2025-02-18'
+    '1710355200'
 );
 
 INSERT INTO products (
@@ -115,7 +117,7 @@ INSERT INTO products (
     'AAA123',
     '189',
     'HAY',
-    '2025-02-18'
+    '1710355200'
 );
 
 INSERT INTO products (
@@ -133,7 +135,7 @@ INSERT INTO products (
     'AAA123',
     '329',
     'HAY',
-    '2025-02-18'
+    '1710355200'
 );
 
 INSERT INTO products (
@@ -151,7 +153,7 @@ INSERT INTO products (
     'AAA123',
     '399',
     'HAY',
-    '2025-02-18'
+    '1710355200'
 );
 
 INSERT INTO products (
@@ -169,7 +171,7 @@ INSERT INTO products (
     'AAA123',
     '659',
     'HAY',
-    '2025-02-18'
+    '1710355200'
 );
 
 INSERT INTO products (
@@ -187,7 +189,7 @@ INSERT INTO products (
     'AAA123',
     '95',
     'HAY',
-    '2025-02-18'
+    '1710355200'
 );
 
 INSERT INTO products (
@@ -205,7 +207,7 @@ INSERT INTO products (
     'AAA123',
     '189',
     'HAY',
-    '2025-02-18'
+    '1710355200'
 );
 
 INSERT INTO products (
@@ -223,7 +225,7 @@ INSERT INTO products (
     'AAA123',
     '1688',
     'HAY',
-    '2025-02-27'
+    '1710355200'
 );
 
 INSERT INTO products (
@@ -241,7 +243,7 @@ INSERT INTO products (
     'AAA123',
     '1688',
     'HAY',
-    '2025-02-27'
+    '1710355200'
 );
 
 INSERT INTO products (
@@ -259,7 +261,7 @@ INSERT INTO products (
     'AAA123',
     '7299',
     'HAY',
-    '2025-02-27'
+    '1710355200'
 );
 
 INSERT INTO products (
@@ -277,25 +279,7 @@ INSERT INTO products (
     'AAA123',
     '3049',
     'HAY',
-    '2025-02-27'
-);
-
-INSERT INTO products (
-    productName,
-    description,
-    image,
-    SKU, 
-    price,
-    brand, 
-    publishDate
-) VALUES (
-    'Fifty-Fifty Lamp',
-    'lorem ipsum bla bla bla bla hfajkhfjsakjhfsa fasfsa',
-    'https://www.hay.com/hay/lighting/floor-lamp/fifty-fifty-floor-lamp',
-    'AAA123',
-    '7299',
-    'HAY',
-    '2025-02-27'
+    '1710355200'
 );
 
 INSERT INTO products (
@@ -313,7 +297,7 @@ INSERT INTO products (
     'AAA123',
     '5599',
     'HAY',
-    '2025-02-27'
+    '1710355200'
 );
 
 INSERT INTO products (
@@ -331,7 +315,7 @@ INSERT INTO products (
     'AAA123',
     '2049',
     'HAY',
-    '2025-02-27'
+    '1710355200'
 );
 
 INSERT INTO products (
@@ -349,7 +333,7 @@ INSERT INTO products (
     'AAA123',
     '2889',
     'HAY',
-    '2025-02-27'
+    '1710355200'
 );
 
 INSERT INTO products (
@@ -367,7 +351,7 @@ INSERT INTO products (
     'AAA123',
     '2399',
     'HAY',
-    '2025-03-04'
+    '1710355200'
 );
 
 INSERT INTO products (
@@ -385,7 +369,7 @@ INSERT INTO products (
     'AAA123',
     '1688',
     'HAY',
-    '2025-03-04'
+    '1710355200'
 );
 
 INSERT INTO products (
@@ -403,7 +387,7 @@ INSERT INTO products (
     'AAA123',
     '5749',
     'HAY',
-    '2025-03-04'
+    '1710355200'
 );
 
 INSERT INTO products (
@@ -421,7 +405,7 @@ INSERT INTO products (
     'AAA123',
     '4099',
     'HAY',
-    '2025-03-04'
+    '1710355200'
 );
 
 INSERT INTO products (
@@ -439,7 +423,7 @@ INSERT INTO products (
     'AAA123',
     '3399',
     'HAY',
-    '2025-03-04'
+    '1710355200'
 );
 
 ALTER TABLE products ADD COLUMN slug TEXT;

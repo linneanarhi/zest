@@ -29,6 +29,11 @@ app.get("/api/products", (req, res) => {
     const select = db.prepare("SELECT id, productName, description, image, SKU, price, brand, publishDate FROM products ORDER BY RANDOM() LIMIT 8");
     const products = select.all();
 
+        // Omvandla Unix-tidstämpeln till läsbart datum i svensk tid
+        products.forEach(product => {
+            product.publishDate = new Date(product.publishDate * 1000).toLocaleString("sv-SE", { timeZone: "Europe/Stockholm" });
+        });
+
     products.forEach(product => {
         product.slug = createSlug(product.productName);
         console.log(`Genererad slug: ${product.slug} för produkt: ${product.productName}`);
