@@ -80,7 +80,7 @@ app.get("/api/products/:slug", (req, res) => {
 });
 
 
-//admin
+//admin formulär
 app.post('/api/products', (req, res) => {
     const { productName, description, image, SKU, price, brand, publishDate } = req.body;
     const product = { productName, description, image, SKU, price, brand, publishDate };
@@ -111,6 +111,27 @@ app.post('/api/products', (req, res) => {
     res.status(201).send()
 });
 
+
+//admin lista
+app.get("/api/adminproducts", (req, res) => {
+    const select = db.prepare("SELECT id, productName, SKU, price FROM products ORDER BY publishDate DESC");
+    const products = select.all();
+
+    res.json(products);
+});
+
+app.delete("/api/adminproducts/:id", (req, res) => {
+    const { id } = req.params;
+    
+    const deleteStmt = db.prepare("DELETE FROM products WHERE id = ?");
+    const result = deleteStmt.run(id);
+
+    if (result.changes > 0) {
+        res.json({ success: true, message: "Product deleted successfully" });
+    } else {
+        res.status(404).json({ success: false, message: "Product not found" });
+    }
+});
 
 app. listen(port, () => {
     console.log("Server started on port 8000");

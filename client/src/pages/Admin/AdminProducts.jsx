@@ -1,10 +1,14 @@
-
+import AdminList from '../../components/AdminList/AdminList';
+import Header from '../../components/Header/header'
 
 function AdminProducts() {
 
   return (
     <>
-    <header><h1>zest</h1></header>
+
+    <Header/>
+    <AdminList />
+
     
     </>
   )

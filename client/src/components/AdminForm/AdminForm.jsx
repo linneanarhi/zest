@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./adminForm.module.css";
+import { useNavigate } from "react-router-dom";
 
 function AdminForm() {
 
@@ -14,6 +15,8 @@ const [formData, setFormData] = useState ({
     brand: "", 
     publishDate: ""
 });
+
+const navigate = useNavigate();
 
 // Funktion för att konvertera ett datum till svensk tid
 const convertToSwedishTime = (date) => {
@@ -62,7 +65,7 @@ const handleSubmit = (event) => {
 		},
 		body: JSON.stringify(products),
         })
-        .then(resp => {
+        .then(() => {
 				setFormData({
                     productName: "", 
                     description: "", 
@@ -72,6 +75,9 @@ const handleSubmit = (event) => {
                     brand: "", 
                     publishDate: ""
                 });
+
+                navigate("/admin/adminproducts");
+
             })
             .catch(error => console.error("Error:", error));
         };
