@@ -14,7 +14,7 @@
 .navbarToggle,
 .imageLogo,
 .headerIcon {
-  position: absolute;
+  position: absolute;  
 }
 
 .navbarToggle {
@@ -46,6 +46,7 @@
   gap: 16px;
   right: 1rem; 
   position: absolute; 
+  
 }
 
 .icon {
@@ -53,7 +54,7 @@
 }
 
 /*Sökrutan*/
-input {
+.searchInput {
   display: none; 
   position: absolute;
   top: 30px; 
@@ -66,7 +67,7 @@ input {
   box-sizing: border-box;
 }
 
-input.open {
+.searchInput.open {
   display: block; 
 }
 

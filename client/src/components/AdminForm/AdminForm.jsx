@@ -1,12 +1,11 @@
+import { useState } from "react";
+import styles from "./adminForm.module.css";
 
 function AdminForm() {
 
 
-//state-variabeln "formData" är ett objekt 
-//som innehåller attribut för samtliga fält i formuläret
-//objekt är en samling av flera värden (egenskaper attribut variabler)
-//variabel är ett namn på nånting där du sparar nånting
-const [formData, setFormData] = useState ( {
+
+const [formData, setFormData] = useState ({
     productName: "", 
     description: "", 
     image: "", 
@@ -16,33 +15,81 @@ const [formData, setFormData] = useState ( {
     publishDate: ""
 });
 
+const handleInputChange = (event) => {
+	const {name, value} =event.target;
+	
+	setFormData({
+	...formData,
+	[name]: value,
+	});
+};
+
+const handleSubmit = (event) => {
+
+	event.preventDefault();
+	
+	const products = { ...formData };  
+	
+	fetch("/api/products", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(products),
+        })
+        .then(resp => {
+				setFormData({
+                    productName: "", 
+                    description: "", 
+                    image: "", 
+                    SKU: "", 
+                    price: "", 
+                    brand: "", 
+                    publishDate: ""
+                });
+            })
+            .catch(error => console.error("Error:", error));
+        };
+    
+
+
 return (
-    <form onSubmit={handleSubmit}>
+    <>
+    
+    <form className={styles.adminForm} onSubmit={handleSubmit}>
         <label htmlFor="productName">Product Name</label>
-            <input type="text" id="productName" value={formData.productName} onChange={handleInputChange} placeholder="Product Name"></input>
+            <input type="text" className={styles.adminInput} name="productName" id="productName" value={formData.productName} onChange={handleInputChange} placeholder="Product Name" />
 
             <label htmlFor="description">Description</label>
-            <input type="text" id="description" value={formData.description} onChange={handleInputChange} placeholder="Description"></input>
+            <input className={styles.adminInput} type="text" name="description" id="description" value={formData.description} onChange={handleInputChange} placeholder="Description" />
 
             <label htmlFor="image">Image</label>
-            <input type="text" id="image" value={formData.image} onChange={handleInputChange} placeholder="URL"></input>
+            <input className={styles.adminInput} type="text" name="image" id="image" value={formData.image} onChange={handleInputChange} placeholder="URL" />
 
-            <label htmlFor="sku">SKU</label>
-            <input type="text" id="sku" value={formData.SKU} onChange={handleInputChange} placeholder="SKU"></input>
+            <label htmlFor="SKU">SKU</label>
+            <input className={styles.adminInput} type="text" name="SKU" id="SKU" value={formData.SKU} onChange={handleInputChange} placeholder="SKU" />
 
             <label htmlFor="price">Price</label>
-            <input type="text" id="price" value={formData.price} onChange={handleInputChange} placeholder="Price in SEK"></input>
+            <input className={styles.adminInput} type="text" name="price" id="price" value={formData.price} onChange={handleInputChange} placeholder="Price in SEK" />
 
             <label htmlFor="brand">Brand</label>
-            <input type="text" id="brand" value={formData.brand} onChange={handleInputChange} placeholder="Brand"></input>
+            <input className={styles.adminInput} type="text" name="brand" id="brand" value={formData.brand} onChange={handleInputChange} placeholder="Brand" />
 
-            <label htmlFor="publishDate">Publish Date</label>
-            <input type="text" id="publishDate" value={formData.publishDate} onChange={handleInputChange} placeholder="Publish Date"></input>
+            <label className={styles.adminLabel} htmlFor="publishDate">Publish Date</label>
+            <input className={styles.adminInput} type="text" name="publishDate" id="publishDate" value={formData.publishDate} onChange={handleInputChange} placeholder="Publish Date" />
 
-            //value är attribut för state-variabeln
-            //onChange hanterar när man skriver något i input "ändringen av inputfältet".
+            
+            {/*state-variabeln "formData" är ett objekt 
+            som innehåller attribut för samtliga fält i formuläret
+            objekt är en samling av flera värden (egenskaper attribut variabler)
+            variabel är ett namn på nånting där du sparar nånting*/}
+            {/*value är attribut för state-variabeln. onChange hanterar när man skriver något i input "ändringen av inputfältet".*/}
+
+            <button className={styles.adminButton} type="submit">Submit</button>
         
     </form>
+    
+    </>
 );
 
 }

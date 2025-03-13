@@ -1,3 +1,5 @@
+
+const bodyParser = require("body-parser");
 const express = require("express");
 const Database = require("better-sqlite3");
 const port = 8000;
@@ -6,6 +8,10 @@ const app = express(); //Här är expressapplikationen vi skapat
 const db = new Database("./db/products.db", {
     verbose: console.log
 });
+
+//parsar JSON som skickas till backend och gör informationen t
+//illgänglig via req.body inuti route. 
+app.use(bodyParser.json()); 
 
 function createSlug(productName) {
     return productName.toLowerCase()
@@ -68,6 +74,37 @@ app.get("/api/products/:slug", (req, res) => {
     }
 });
 
+
+//admin
+app.post('/api/products', (req, res) => {
+    const { productName, description, image, SKU, price, brand, publishDate } = req.body;
+    const product = { productName, description, image, SKU, price, brand, publishDate };
+
+    const insert = db.prepare(`
+        INSERT INTO products (
+        productName, 
+        description, 
+        image, 
+        SKU, 
+        price, 
+        brand, 
+        publishDate
+        ) VALUES (
+        @productName, 
+        @description, 
+        @image, 
+        @SKU, 
+        @price, 
+        @brand, 
+        @publishDate
+        )
+    `);
+
+
+    insert.run(product);
+
+    res.status(201).send()
+});
 
 
 app. listen(port, () => {
