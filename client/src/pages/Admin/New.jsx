@@ -1,10 +1,11 @@
 import AdminForm from '../../components/AdminForm/AdminForm'
+import Header from '../../components/Header/header'
 
 function New() {
 
     return (
       <>
-      <header><h1>zest</h1></header>
+      <Header/>
       <AdminForm />
       </>
     )

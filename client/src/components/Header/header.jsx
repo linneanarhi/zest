@@ -43,7 +43,7 @@ function Header() {
           
 
         {/* Hamburger button (for mobile) */}
-        <button
+        <button 
           className={styles.navbarToggle}
           onClick={() => setIsOpen(!isOpen)}
           title="Meny"
@@ -64,7 +64,7 @@ function Header() {
         </div>
 
         <div className={styles.headerIcon}>
-        <Link to="/shoppingcart">
+        <Link className={styles.navbarLink} to="/shoppingcart">
           <FontAwesomeIcon
             icon={faBagShopping}
             className={styles.icon}
