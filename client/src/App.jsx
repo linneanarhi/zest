@@ -7,7 +7,26 @@ import Checkout from './pages/Home/Checkout';
 import AdminProducts from './pages/Admin/AdminProducts';
 import New from './pages/Admin/New';
 import 'typeface-roboto';
-import { BrowserRouter, Routes, Route} from 'react-router';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router';
+import { useEffect } from 'react';
+
+
+function PageTitle() {
+  const location = useLocation();
+
+  useEffect(() => {
+    const titles = {
+      "/": "ZEST | HOME",
+      "/search": " ZEST | SEARCHRESULT",
+      "/admin/adminproducts": "ZEST | ADMIN - PRODUCTS",
+      "/admin/new": "ZEST | ADD NEW PRODUCT"
+    };
+
+    document.title = titles[location.pathname] || "ZEST";
+  }, [location]);
+
+  return null; // Komponentens enda uppgift är att sätta titeln
+}
 
 
 function App() {
@@ -17,6 +36,7 @@ function App() {
 
 
       <BrowserRouter>
+      <PageTitle />
         <Routes>
           <Route index element={<Home />} />
           <Route path="/productdetails/:slug" element={<ProductDetails />} />

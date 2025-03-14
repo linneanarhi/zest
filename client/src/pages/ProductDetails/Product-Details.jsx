@@ -9,6 +9,10 @@ function ProductDetails() {
   const [product, setProduct] = useState(null);
   const [related, setRelated] = useState([]);
 
+  useEffect(() => {
+    document.title = `Produkt: ${params.slug} | ZEST`;
+  }, [params.slug]);
+
   // Första useEffect för att hämta produktdata
   useEffect(() => {
     console.log("Product slug från URL:", params.slug); // Kontrollera att det inte är undefined
