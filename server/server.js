@@ -77,6 +77,7 @@ app.get("/api/products/:slug", (req, res) => {
     } else {
         res.status(404).json({ error: "Produkt inte hittad" }); 
     }
+
 });
 
 

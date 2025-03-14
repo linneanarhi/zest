@@ -92,7 +92,7 @@ function ProductInfo({ product, related }) {
           related.slice(0,5).map((relatedProduct) => (
             
             <div key={relatedProduct.id} className={styles.hiddenRelated}>
-              <Link to={`/productdetails/${product.slug}`}>
+              <Link to={`/productdetails/${relatedProduct.slug}`} className={styles.linkStyle}>
               <div className={styles.relatedImg}>
               <img
                 src={relatedProduct.image}
@@ -120,6 +120,7 @@ function ProductInfo({ product, related }) {
           <Slider {...sliderSettings}>
             {related.map((relatedProduct) => (
               <div key={relatedProduct.id} className={styles.relatedItem}>
+                <Link to={`/productdetails/${relatedProduct.slug}`} className={styles.linkStyle}>
                 <div className={styles.relatedSlider}>
                 <img
                   src={relatedProduct.image}
@@ -131,7 +132,9 @@ function ProductInfo({ product, related }) {
                 <p>{relatedProduct.productName}</p>
                 <p>{relatedProduct.price} SEK</p>
                 </div>
+                
                 </div>
+                </Link>
               </div>
             ))}
           </Slider>
