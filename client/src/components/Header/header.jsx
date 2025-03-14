@@ -51,7 +51,17 @@ function Header() {
           {isOpen ? "✖" : "☰"}
         </button>
 
+                      {/* DESKTOP */}
+      <div className={styles.catagoryDesktop}>
+        <ul>
+          <li>Nyheter</li>
+          <li>Inredning</li>
+          <li>Belysning</li>
+          <li>Möbler</li>
+        </ul>
+      </div>
 
+        {/* <div className={styles.headerWrapper}> */}
         <div className={styles.imageLogo}>
           <Link className={styles.productLink} to={`/`}>
             <img
@@ -76,6 +86,9 @@ function Header() {
             className={styles.icon}
             title="Favoriter"
           />
+
+     
+      {/* </div> */}
 
           {/* Sökrutan */}
           {searchOpen && (
@@ -104,17 +117,12 @@ function Header() {
           <li>Belysning</li>
           <li>Möbler</li>
         </ul>
+
+   
+
       </nav>
 
-      {/* DESKTOP */}
-      <div className={styles.catagoryDesktop}>
-        <ul>
-          <li>Nyheter</li>
-          <li>Inredning</li>
-          <li>Belysning</li>
-          <li>Möbler</li>
-        </ul>
-      </div>
+    
   
 
 
