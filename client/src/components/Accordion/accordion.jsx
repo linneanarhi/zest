@@ -5,7 +5,7 @@ function Accordion() {
   const accordionData = [
     {
       title: 'About',
-      content: ['Our story']
+      content: ['Our story', 'Social Media']
     },
     {
       title: 'My pages',
