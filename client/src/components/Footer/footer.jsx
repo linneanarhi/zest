@@ -9,9 +9,9 @@ function Footer () {
         
         <>
 
-        <footer> 
-        <div className={styles.footerDesktop}>
-        <div className={styles.follow}>Follow Us:</div>
+        <footer className={styles.footerDesktop}> 
+        
+        {/* <div className={styles.follow}>Follow Us:</div> */}
         <div className={styles.footerIcon}>
         <FontAwesomeIcon icon={faInstagram} />
         <FontAwesomeIcon icon={faSquareFacebook} />
@@ -27,23 +27,24 @@ function Footer () {
     <div className={styles.footerList}>
 
       <ul>
-        <li><strong>About</strong></li>
+        <li><strong>ABOUT</strong></li>
         <li>Our Story</li>
+        <li>Social Media</li>
       </ul>
       <ul>
-        <li><strong>My Pages</strong></li>
+        <li><strong>MY PAGES</strong></li>
         <li>Log In</li>
       </ul>
       <ul>
   
-        <li><strong>Contact</strong></li>
+        <li><strong>CONTACT</strong></li>
         <li>Return Policy</li>
         <li>Contact Us</li>
       </ul>
     </div>
       
       <div className={styles.copyright}><small>©ZEST</small></div>
-      </div>
+      
       </footer>
         
         </>
