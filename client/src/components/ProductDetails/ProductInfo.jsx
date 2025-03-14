@@ -7,6 +7,7 @@ import Slider from "react-slick";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { useParams } from 'react-router-dom'; 
 
 function ProductInfo({ product, related }) {
 
@@ -19,12 +20,18 @@ function ProductInfo({ product, related }) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+
   const sliderSettings = {
     dots: true,
     infinite: true,
     speed: 300,
     slidesToShow: 5,
     slidesToScroll: 2,
+    nextArrow: <div className={styles.customNext}>Next</div>,
+  prevArrow: <div className={styles.customPrev}>Prev</div>,
+  customPaging: i => (
+    <button className={styles.customDot}>{i + 1}</button>
+  ),
     responsive: [
       {
         breakpoint: 1024,
@@ -33,11 +40,15 @@ function ProductInfo({ product, related }) {
           slidesToScroll: 2,
           infinite: true,
           dots: true,
+          
+          
         },
       },
       { breakpoint: 640, settings: { slidesToShow: 2, slidesToScroll: 2 } },
     ],
   };
+
+
   
 
   return (
@@ -56,12 +67,12 @@ function ProductInfo({ product, related }) {
         <p>Pris: {product.price} SEK</p>
         
         
-        <div>
+        <div className={styles.addProduct}>
           
           <button onClick={()=> setCount(count - 1)}disabled ={count===0}> - </button>
-          <span>
+          <p>
           {count}
-          </span>
+          </p>
           <button onClick={()=> setCount(count + 1)} > + </button>
         
           <button className={styles.Shopping}>Add to cart</button>
@@ -73,24 +84,29 @@ function ProductInfo({ product, related }) {
 
 
     
-      <h2 className={styles.relatedText}>Related Products</h2>
+      <h2 className={styles.relatedText}>RELATED PRODUCTS</h2>
 
-      {/* Produktkort som alltid ska visas */}
+      {/* Related product desktop*/}
       <div className={styles.relatedProductsGrid}>
         {related.length > 0 ? (
           related.slice(0,5).map((relatedProduct) => (
+            
             <div key={relatedProduct.id} className={styles.hiddenRelated}>
+              <Link to={`/productdetails/${product.slug}`}>
               <div className={styles.relatedImg}>
               <img
                 src={relatedProduct.image}
                 alt={relatedProduct.productName}
                 
               />
+              
               </div>
+              
               <div className={styles.relatedInfo}>
               <p>{relatedProduct.productName}</p>
               <p>{relatedProduct.price} SEK</p>
               </div>
+              </Link>
             </div>
           ))
         ) : (
@@ -100,21 +116,26 @@ function ProductInfo({ product, related }) {
 
       
       {windowWidth < 1024 && (
-        <div className={styles.relatedSlider}>
+        
           <Slider {...sliderSettings}>
             {related.map((relatedProduct) => (
               <div key={relatedProduct.id} className={styles.relatedItem}>
+                <div className={styles.relatedSlider}>
                 <img
                   src={relatedProduct.image}
                   alt={relatedProduct.productName}
                   className={styles.relatedImg}
                 />
+                
+                <div className={styles.slideInfo}>
                 <p>{relatedProduct.productName}</p>
                 <p>{relatedProduct.price} SEK</p>
+                </div>
+                </div>
               </div>
             ))}
           </Slider>
-        </div>
+        
         
       )}
       
