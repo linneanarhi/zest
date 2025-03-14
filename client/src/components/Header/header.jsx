@@ -77,13 +77,13 @@ function Header() {
         <Link className={styles.navbarLink} to="/shoppingcart">
           <FontAwesomeIcon
             icon={faBagShopping}
-            className={styles.icon}
+            className={styles.iconBag}
             title="Varukorg"
           />
           </Link>
           <FontAwesomeIcon
             icon={faHeart}
-            className={styles.icon}
+            className={styles.iconHeart}
             title="Favoriter"
           />
 
@@ -103,7 +103,7 @@ function Header() {
           )}
           
           <div 
-            className={styles.icon}
+            className={styles.iconSearch}
             onClick={() => setSearchOpen(!searchOpen)}
           >
             {searchOpen ? "X" : <FontAwesomeIcon icon={faMagnifyingGlass} />}
