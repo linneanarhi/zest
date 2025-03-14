@@ -1,112 +1,176 @@
+.ProductInfo{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  
+}
 
-
-.background {
-  background-color: #f9f9f9;
-  width: 100%;
-  padding-left: 20px;
-  padding-right: 20px;
-
+h1 {
+  font-size: 24px;
 }
   
 .productImg{
-  width: 100%;
+  
+  padding: 20px;
+  align-items: center;
 }
 
-  .ProductInfo{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    height: auto;
-    margin: 20px 0;
-    
-  }
+.ProductDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+}
+
+.addProduct {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+
+}
+
+.Shopping {
+  border-radius: 4px;
+  padding: 2px;
+}
+
+.addProduct button {
+  background-color: #494a4a;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  
+}
+
+.addProduct button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* "Add to cart" knapp */
+.Shopping {
+  padding: 10px 20px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+
+
+/* FontAwesome hjärta */
+.addProduct svg {
+  font-size: 24px;
+  color: #29885E; /* Tomatfärgad hjärta */
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.addProduct svg:hover {
+  color: #66b08e; /* Ändrar färg vid hover */
+}
+  
 
   .relatedProductsGrid {
     display: none;
   }
 
   .relatedText {
+    margin-top: 30px;
     text-align: center;
+    color: black;
+    font-size: 18px;
+  }
+
+
+  :global(.slick-slider) {
+    max-width: 90%;
+    margin: auto;
+  }
+  
+  :global(.slick-prev), :global(.slick-next) {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+  }
+
+  
+  :global(.slick-dots button:before) {
+    color: #ccc;
+    margin-bottom: 10px;
+  }
+  
+  :global(.slick-dots li.slick-active button:before) {
+    color: black;
+   
   }
 
   .relatedSlider {
     display: flex;
-    flex-direction: column;  /* Visa bilderna horisontellt */
-    
-    
-  }
-
-
-  .relatedItem {
-    display: flex;
     flex-direction: column;
-    gap: 20px;
-    
+    padding: 10px;
     
   }
-
-  .relatedImg {
-    
-    width: 100%;
-    height: auto;
+  
+  .slideInfo {
+    margin-top: 10px;
+    font-size: 14px;
   }
-
 
   
 
   @media (min-width: 640px){
 
 
-    .ProductInfo{
+    .ProductInfo {
       display: grid;
       grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      justify-content: center;
       width: 100%;
-      height: auto;
-     
-    }
-
-    .ProductDetails {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      padding-left: 20px;
       
     }
 
+    .productImg {
+      width: 100%;
+      height: auto;
+    }
+
+    .ProductDetails {
+      margin: 20px;
+    }
+  
     .relatedProduct {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
     }
   }
-
   @media (width >= 1024px) {
 
-    
-    .relatedProductsGrid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 20px;
+    .productImg {
       width: 100%;
-      
-      
-      
-      
-      
+      height: 100vh;
+      object-fit: cover;
     }
 
-    .hiddenRelated {
-      
+    .relatedProductsGrid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr); 
+      gap: 20px; 
       width: 100%;
-      background-color: green;
-    
-    
-    } 
+      justify-items: center; 
+      padding: 0 20px;
+      box-sizing: border-box; 
+    }
 
-     .relatedImg {
-      
+    .relatedImg img {
       width: 100%;
       height: auto;
-    } 
+    }
 
   
   }
