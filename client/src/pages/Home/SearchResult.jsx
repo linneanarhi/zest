@@ -1,47 +1,40 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
+import ProductList from "../../components/products/products";
+import Header from "../../components/Header/header";
+import Footer from "../../components/Footer/footer";
+import styles from "../../components/searchResult/Search.module.css";
 
-
-
-      function SearchResult() {
-
-        const location = useLocation();
-    const query = new URLSearchParams(location.search).get("q"); // Hämta query från URL
+function SearchResult() {
+  const location = useLocation();
+  const query = new URLSearchParams(location.search).get("q"); // Hämta query från URL
   const [results, setResults] = useState([]);
+
 
   useEffect(() => {
     if (!query) return;
 
     fetch(`/api/search?q=${query}`)
-    .then((res) => res.json())
-    .then((data) => setResults(data))
-    .catch((err) => console.error("Error fetching search results:", err));
-}, [query]);
+      .then((res) => res.json())
+      .then((data) => setResults(data))
+      .catch((err) => console.error("Error fetching search results:", err));
+  }, [query]);
 
-        return (
-          <>
-          <div>
-      <h2>Items found: {results.length}</h2>
+  return (
+    <>
+      <Header />
+      <div>
+        <h2 className={styles.searchH2}>Items found: {results.length}</h2>
 
-      {results.length === 0 ? (
-        <p>No result.</p>
-      ) : (
-        <ul>
-          {results.map((product) => (
-            <li key={product.id}>
-              <Link to={`/productdetails/${product.slug}`}>
-                <img src={product.image} alt={product.productName} width="100" />
-                <p>{product.productName}</p>
-                <p>{product.price}SEK</p>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-          </>
-        );
-      }
-  
-  export default SearchResult;
+        {results.length === 0 ? (
+          <p>No result.</p>
+        ) : (
+          <ProductList products={results} />
+        )}
+      </div>
+      <Footer />
+    </>
+  );
+}
+
+export default SearchResult;
