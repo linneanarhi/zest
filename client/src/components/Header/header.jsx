@@ -55,7 +55,7 @@ function Header() {
           <Link className={styles.productLink} to={`/`}>
             <img
               className={styles.logo}
-              src="/image/newLogo.png"
+              src="/image/newLogo2.png"
               alt="ZEST"
               title="Home"
             />
