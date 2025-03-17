@@ -7,7 +7,7 @@ import Slider from "react-slick";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import { useParams } from 'react-router-dom'; 
+ 
 
 function ProductInfo({ product, related }) {
 
@@ -64,7 +64,7 @@ function ProductInfo({ product, related }) {
         <h1>{product.productName}</h1>
         <p>{product.description}</p>
         
-        <p>Pris: {product.price} SEK</p>
+        <p>Price: {product.price} SEK</p>
         
         
         <div className={styles.addProduct}>
@@ -110,7 +110,7 @@ function ProductInfo({ product, related }) {
             </div>
           ))
         ) : (
-          <p>Inga relaterade produkter hittades.</p>
+          <p>No related products found.</p>
         )}
       </div>
 

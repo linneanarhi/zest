@@ -33,8 +33,9 @@ function Hero() {
         style = {{ cursor: "pointer" }}
       ></video>
       <div className={styles.heroText}>
-            <h1>Lorem Ipsum</h1>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Excepturi labore explicabo aliquam illum, doloribus voluptate inventore velit officia. Nemo, consectetur. Consectetur fuga nihil at autem ratione maiores eius odio aperiam! </p>
+            <h1>Transform Your Space</h1>
+            <p>Explore curated designs that blend functionality with timeless beauty. From bold statements to minimalist essentials, our collection from ZEST brings Scandinavian elegance to every room.
+            Let your space reflect your unique style with pieces that inspire. </p>
         </div>
 
       </div>   

@@ -56,6 +56,25 @@ h2, span {
     text-decoration: none;
 }
 
+.imageWrapper {
+    position: relative;
+    display: inline-block; /* Se till att den omsluter bilden */
+  }
+  
+  .newTag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #F18743;
+    color: white;
+    padding: 5px 10px;
+    font-size: 1rem;;
+    font-weight: bold;
+    border-radius: 5px;
+    z-index: 10; /* Se till att den ligger ovanpå */
+    
+  }
+
 .favoriteButton {
     background: none;
     border: none;

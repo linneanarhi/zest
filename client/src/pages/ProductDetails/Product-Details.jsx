@@ -11,7 +11,7 @@ function ProductDetails() {
 
   useEffect(() => {
     document.title = `Produkt: ${params.slug} | ZEST`;
-  }, [params.slug]);
+  }, []);
 
   // Första useEffect för att hämta produktdata
   useEffect(() => {

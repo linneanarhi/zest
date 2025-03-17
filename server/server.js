@@ -26,13 +26,13 @@ function createSlug(productName) {
 //till startsidan
 app.get("/api/products", (req, res) => {
 
-    const select = db.prepare("SELECT id, productName, description, image, SKU, price, brand, publishDate FROM products ORDER BY RANDOM() LIMIT 8");
+    const select = db.prepare("SELECT id, productName, description, image, SKU, price, brand, publishDate  FROM products ORDER BY publishDate DESC LIMIT 8");
     const products = select.all();
 
-        // Omvandla Unix-tidstämpeln till läsbart datum i svensk tid
-        products.forEach(product => {
+       
+       /*  products.forEach(product => {
             product.publishDate = new Date(product.publishDate * 1000).toLocaleString("sv-SE", { timeZone: "Europe/Stockholm" });
-        });
+        }); */
 
     products.forEach(product => {
         product.slug = createSlug(product.productName);
@@ -62,6 +62,7 @@ app.get("/api/search", (req, res) => {
 });
 
 
+
 //till detaljsidan
 app.get("/api/products/:slug", (req, res) => {
     const slug = req.params.slug; 
@@ -78,6 +79,21 @@ app.get("/api/products/:slug", (req, res) => {
         res.status(404).json({ error: "Produkt inte hittad" }); 
     }
 
+});
+
+app.get("/api/related", (req, res) => {
+
+    const { slug } = req.query;
+
+    const select = db.prepare("SELECT id, productName, description, image, SKU, price, brand, publishDate  FROM products LIMIT 5");
+    const products = select.all(slug);
+       
+    products.forEach(product => {
+        product.slug = createSlug(product.productName);
+        console.log(`Genererad slug: ${product.slug} för produkt: ${product.productName}`);
+    });
+
+    res.json(products);
 });
 
 
