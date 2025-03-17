@@ -1,5 +1,5 @@
 .productList {
-    width: 100%; /* Se till att både adminTop och table har samma bredd */
+    width: 70%; /* Se till att både adminTop och table har samma bredd */
     margin: 0 auto; /* Centrera hela sektionen */
 }
 
@@ -20,7 +20,7 @@
 
 .adminTop button {
     padding: 8px 12px;
-    background-color: #007bff;
+    background: linear-gradient(135deg, #494a4a, #5a5b5b);
     color: white;
     border: none;
     border-radius: 5px;
@@ -28,7 +28,7 @@
 }
 
 .adminTop button:hover {
-    background-color: #0056b3;
+  background: linear-gradient(135deg, #494a4a, #5a5b5b);
 }
 
 table {
@@ -36,21 +36,23 @@ table {
     margin: 20px auto; /* Centrerar tabellen */
     border-collapse: separate; /* Tar bort dubbelkantade borders */
     border-spacing: 0;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* Lägger till en subtil skugga */
+    box-shadow: 0px 0px 8px rgba(0, 123, 255, 0.2); /* Lägger till en subtil skugga */
     border-radius: 8px;
     overflow: hidden;
     
   }
   
   thead {
-    background-color: #A4BDF5; /* Ljusgrå bakgrund på header */
+    background-color: #e0dfdf; /* Ljusgrå bakgrund på header */
+    color: #3b3b3b;
     
   }
   
   th, td {
-    border: 1px solid #95b3f5; /* Tydliga svarta borders */
+    border: 1px solid rgba(107, 106, 106, 0.806); /* Tydliga svarta borders */
     padding: 10px; /* Ger utrymme i cellerna */
     text-align: left; /* Text till vänster */
+    color: #3b3b3b;
    
   }
 
@@ -78,13 +80,13 @@ tbody tr:last-child td:last-child {
 
   
   tbody tr:nth-child(even) {
-    background-color: #b6caf5; /* Alternativa rader för bättre läsbarhet */
+    background-color:  #fafafa; /* Alternativa rader för bättre läsbarhet */
   }
 
   tbody tr:nth-child(odd) {
-    background-color: #c2d3f8; /* Alternativa rader för bättre läsbarhet */
+    background-color: #eae9e9; /* Alternativa rader för bättre läsbarhet */
   }
   
   tbody tr:hover {
-    background-color: #cbd8f5; /* Ljusgrå hover-effekt */
+    background-color: #dce5f8; /* Ljusgrå hover-effekt */
   }

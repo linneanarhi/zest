@@ -86,33 +86,35 @@ const handleSubmit = (event) => {
 
 return (
     <>
+
+    <h2 className={styles.Newh2}>Add New Product</h2>
     
     <form className={styles.adminForm} onSubmit={handleSubmit}>
-        <label htmlFor="productName">Product Name</label>
-            <input type="text" className={styles.adminInput} name="productName" id="productName" value={formData.productName} onChange={handleInputChange} placeholder="Product Name" maxlength="25" required/>
+        <label className={styles.adminLabel} htmlFor="productName">Product Name:
+            <input type="text" className={styles.adminInput} name="productName" id="productName" value={formData.productName} onChange={handleInputChange} maxlength="25" required/></label>
 
-            <label htmlFor="description">Description</label>
-            <input className={styles.adminInput} type="text" name="description" id="description" value={formData.description} onChange={handleInputChange} placeholder="Description" required/>
+            <label className={styles.adminLabel} htmlFor="description">Description:
+            <input className={styles.adminInput} type="text" name="description" id="description" value={formData.description} onChange={handleInputChange}  required/></label>
 
-            <label htmlFor="image">Image</label>
-            <input className={styles.adminInput} type="text" name="image" id="image" value={formData.image} onChange={handleInputChange} placeholder="URL" required/>
+            <label className={styles.adminLabel} htmlFor="image">Image:
+            <input className={styles.adminInput} type="text" name="image" id="image" value={formData.image} onChange={handleInputChange} placeholder="URL" required/></label>
 
-            <label htmlFor="SKU">SKU</label>
-            <input className={styles.adminInput} type="text" name="SKU" id="SKU" value={formData.SKU} onChange={handleInputChange} placeholder="SKU" pattern="[A-Z]{3}[0-9]{3}"
-            title="Vänligen ange i formatet: XXXYYY (ex: ABC123)" required />
+            <label className={styles.adminLabel} htmlFor="SKU">SKU:
+            <input className={styles.adminInput} type="text" name="SKU" id="SKU" value={formData.SKU} onChange={handleInputChange}  pattern="[A-Z]{3}[0-9]{3}"
+            title="Vänligen ange i formatet: XXXYYY (ex: ABC123)" required /></label>
 
-            <label htmlFor="price">Price</label>
-            <input className={styles.adminInput} type="text" name="price" id="price" value={formData.price} onChange={handleInputChange} placeholder="Price in SEK" required/>
+            <label className={styles.adminLabel} htmlFor="price">Price:
+            <input className={styles.adminInput} type="text" name="price" id="price" value={formData.price} onChange={handleInputChange} placeholder="Price in SEK" required/></label>
 
-            <label htmlFor="brand">Brand</label>
-            <input className={styles.adminInput} type="text" name="brand" id="brand" value={formData.brand} onChange={handleInputChange} placeholder="Brand" required />
+            <label className={styles.adminLabel} htmlFor="brand">Brand:
+            <input className={styles.adminInput} type="text" name="brand" id="brand" value={formData.brand} onChange={handleInputChange}  required /></label>
 
-            <label className={styles.adminLabel} htmlFor="publishDate">Publish Date</label>
+            <label className={styles.adminLabel} htmlFor="publishDate">Publish Date:
             <input className={styles.adminInput} type="datetime-local" name="publishDate" id="publishDate" value={formData.publishDate
                         ? new Date(formData.publishDate * 1000)
                               .toLocaleString("sv-SE", { timeZone: "Europe/Stockholm" }) // Konvertera till svensk tid
                               .replace(" ", "T") // Formatet för datetime-local kräver ett "T" istället för ett mellanslag
-                        : ""} onChange={handleInputChange} placeholder="Publish Date" required />
+                        : ""} onChange={handleInputChange} placeholder="Publish Date" required /></label>
 
             
             {/*state-variabeln "formData" är ett objekt 
