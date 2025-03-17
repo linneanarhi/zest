@@ -79,13 +79,13 @@ tbody tr:last-child td:last-child {
 }
 
   
-  tbody tr:nth-child(even) {
-    background-color:  #fafafa; /* Alternativa rader för bättre läsbarhet */
+  tbody{
+    background-color:  #fafafa; 
   }
 
-  tbody tr:nth-child(odd) {
-    background-color: #eae9e9; /* Alternativa rader för bättre läsbarhet */
-  }
+/*   tbody tr:nth-child(odd) {
+    background-color: #eae9e9; 
+  } */
   
   tbody tr:hover {
     background-color: #dce5f8; /* Ljusgrå hover-effekt */
