@@ -35,8 +35,10 @@ function AdminList() {
 
     return (
         <div className={styles.productList}>
-            <h2>PRODUCTS</h2>
+            <div className={styles.adminTop}>
+            <h2 className={styles.adminH2}>PRODUCTS</h2>
             <Link to='/admin/new'><button>NEW PRODUCT</button></Link>
+            </div>
             {/* Om inga produkter finns, visa ett meddelande */}
             {products.length === 0 ? (
                 <p>No products found.</p>
@@ -56,7 +58,7 @@ function AdminList() {
                                 <td>{product.productName}</td>
                                 <td>{product.SKU}</td>
                                 <td>{product.price}</td>
-                                <td><button onClick={() => deleteById(product.id)}><FontAwesomeIcon icon={faTrashCan} /></button></td>
+                                <td><button onClick={() => deleteById(product.id)}><FontAwesomeIcon icon={faTrashCan} className={styles.deletebtn}/></button></td>
                             </tr>
                         ))}
                     </tbody>
