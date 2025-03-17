@@ -109,13 +109,13 @@
   text-decoration: underline;
 }
 
-.catagoryDesktop {
+.catagoryDesktop, .desktopSearch {
   display: none;
 }
 
 @media (min-width: 1024px) {
   .navbarToggle,
-  .navbarMenu {
+  .navbarMenu, .iconSearch {
     display: none;
   }
 
@@ -136,6 +136,18 @@
     gap: 40px;
     background-color: #a4bdf5;
     padding: 10px 0;
+  }
+
+  .desktopSearch {
+    display: block;
+    position: absolute;
+    left: 20px; 
+    top: 50%;
+    transform: translateY(-50%);
+    width: 200px;
+    padding: 8px;
+    background-color: whitesmoke;
+
   }
 
   .catagoryDesktop ul {
