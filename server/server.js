@@ -24,23 +24,45 @@ function createSlug(productName) {
 
 
 //till startsidan
+
 app.get("/api/products", (req, res) => {
 
-    const select = db.prepare("SELECT id, productName, description, image, SKU, price, brand, publishDate  FROM products ORDER BY publishDate DESC LIMIT 8");
-    const products = select.all();
+    // Hämta nyaste produkterna (publicerade inom de senaste 7 dagarna)
+    const recentSelect = db.prepare(`
+        SELECT id, productName, description, image, SKU, price, brand, publishDate 
+        FROM products 
+        WHERE publishDate >= ? 
+        ORDER BY publishDate DESC 
+    `);
 
-       
-       /*  products.forEach(product => {
-            product.publishDate = new Date(product.publishDate * 1000).toLocaleString("sv-SE", { timeZone: "Europe/Stockholm" });
-        }); */
+    const sevenDaysAgo = Math.floor(Date.now() / 1000) - (7 * 24 * 60 * 60); // Unix-tid för 7 dagar sedan
+    const recentProducts = recentSelect.all(sevenDaysAgo); // Hämta produkter publicerade senaste 7 dagarna
 
-    products.forEach(product => {
+    // Hämta äldre produkter (de som inte är nyheter)
+    const olderSelect = db.prepare(`
+        SELECT id, productName, description, image, SKU, price, brand, publishDate 
+        FROM products 
+        WHERE publishDate < ? 
+        ORDER BY RANDOM () 
+    `);
+
+    const olderProducts = olderSelect.all(sevenDaysAgo); // Hämta äldre produkter (publicerade före 7 dagar)
+
+    // Kombinera de nyaste produkterna och de slumpmässigt ordnade äldre produkterna
+    const allProducts = [...recentProducts, ...olderProducts];
+    const limitedProducts = allProducts.slice(0, 8);
+
+    
+
+    limitedProducts.forEach(product => {
         product.slug = createSlug(product.productName);
         console.log(`Genererad slug: ${product.slug} för produkt: ${product.productName}`);
     });
 
-    res.json(products);
+    // Skicka tillbaka produkterna
+    res.json(limitedProducts);
 });
+
 
 //sökresultat
 app.get("/api/search", (req, res) => {
@@ -79,19 +101,7 @@ app.get("/api/products/:slug", (req, res) => {
         res.status(404).json({ error: "Produkt inte hittad" }); 
     }
 
-});
 
-app.get("/api/related", (req, res) => {
-
-    const { slug } = req.query;
-
-    const select = db.prepare("SELECT id, productName, description, image, SKU, price, brand, publishDate  FROM products LIMIT 5");
-    const products = select.all(slug);
-       
-    products.forEach(product => {
-        product.slug = createSlug(product.productName);
-        console.log(`Genererad slug: ${product.slug} för produkt: ${product.productName}`);
-    });
 
     res.json(products);
 });
