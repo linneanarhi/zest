@@ -22,10 +22,10 @@ import { Link } from "react-router-dom";
         return (
           <>
           <div>
-      <h2>Sökresultat för: "{query}"</h2>
+      <h2>Items found: {query.length+1}</h2>
 
       {results.length === 0 ? (
-        <p>Inga produkter hittades.</p>
+        <p>No result.</p>
       ) : (
         <ul>
           {results.map((product) => (
