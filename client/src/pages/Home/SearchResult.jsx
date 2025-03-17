@@ -22,7 +22,7 @@ import { Link } from "react-router-dom";
         return (
           <>
           <div>
-      <h2>Items found: {query.length+1}</h2>
+      <h2>Items found: {results.length}</h2>
 
       {results.length === 0 ? (
         <p>No result.</p>
