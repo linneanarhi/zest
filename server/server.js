@@ -111,6 +111,13 @@ app.get("/api/products/:slug", (req, res) => {
 app.post('/api/products', (req, res) => {
     const { productName, description, image, SKU, price, brand, publishDate } = req.body;
     const product = { productName, description, image, SKU, price, brand, publishDate };
+    const existingProduct = db.prepare(`
+        SELECT * FROM products WHERE productName = ? OR image = ?
+        `).get(productName, image);
+
+        if (existingProduct) {
+            return res.status(400).json({ message: "Product Name or URL already exists."});
+        }
 
     const insert = db.prepare(`
         INSERT INTO products (
@@ -135,7 +142,7 @@ app.post('/api/products', (req, res) => {
 
     insert.run(product);
 
-    res.status(201).send()
+    res.status(201).json({ message: "Product added."})
 });
 
 
