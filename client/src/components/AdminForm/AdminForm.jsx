@@ -3,120 +3,179 @@ import styles from "./adminForm.module.css";
 import { useNavigate } from "react-router-dom";
 
 function AdminForm() {
+  const [formData, setFormData] = useState({
+    productName: "",
+    description: "",
+    image: "",
+    SKU: "",
+    price: "",
+    brand: "",
+    publishDate: "",
+  });
 
+  const [errorMessage, setErrorMessage] = useState(""); // Ny state för felmeddelande
+  const navigate = useNavigate();
 
-
-const [formData, setFormData] = useState ({
-    productName: "", 
-    description: "", 
-    image: "", 
-    SKU: "", 
-    price: "", 
-    brand: "", 
-    publishDate: ""
-});
-
-const navigate = useNavigate();
-
-
-
-const handleInputChange = (event) => {
+  const handleInputChange = (event) => {
     const { name, value } = event.target;
 
-    // Om användaren ändrar publishDate (som nu inkluderar både datum och tid)
     if (name === "publishDate") {
-        // Omvandla datum och tid till Unix-tidstämpel (sekunder)
-        const unixTimestamp = Math.floor(new Date(value).getTime() / 1000);
-        setFormData({
-            ...formData,
-            [name]: unixTimestamp, // Spara Unix-tidstämpeln
-        });
+      const unixTimestamp = Math.floor(new Date(value).getTime() / 1000);
+      setFormData({ ...formData, [name]: unixTimestamp });
     } else {
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
+      setFormData({ ...formData, [name]: value });
     }
-};
+  };
 
-const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setErrorMessage(""); // Nollställ felmeddelandet vid varje försök
 
-	event.preventDefault();
-	
-	const products = { ...formData };  
-	
-	fetch("/api/products", {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify(products),
-        })
-        .then(() => {
-				setFormData({
-                    productName: "", 
-                    description: "", 
-                    image: "", 
-                    SKU: "", 
-                    price: "", 
-                    brand: "", 
-                    publishDate: ""
-                });
+    try {
+      const response = await fetch("/api/products", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-                navigate("/admin/adminproducts");
+      const data = await response.json(); // Läs API-responsen
 
-            })
-            .catch(error => console.error("Error:", error));
-        };
-    
+      if (!response.ok) {
+        throw new Error(data.message || "Something went wrong");
+      }
 
+      setFormData({
+        productName: "",
+        description: "",
+        image: "",
+        SKU: "",
+        price: "",
+        brand: "",
+        publishDate: "",
+      });
 
-return (
+      navigate("/admin/adminproducts"); // Omdirigera endast vid lyckad inläggning
+    } catch (error) {
+      setErrorMessage(error.message); // Sätt felmeddelandet i state
+    }
+  };
+
+  return (
     <>
+      <h2 className={styles.Newh2}>Add New Product</h2>
 
-    <h2 className={styles.Newh2}>Add New Product</h2>
-    
-    <form className={styles.adminForm} onSubmit={handleSubmit}>
-        <label className={styles.adminLabel} htmlFor="productName">Product Name:
-            <input type="text" className={styles.adminInput} name="productName" id="productName" value={formData.productName} onChange={handleInputChange} maxlength="25" required/></label>
+      <form className={styles.adminForm} onSubmit={handleSubmit}>
+        <label className={styles.adminLabel} htmlFor="productName">
+          Product Name:
+          <input
+            type="text"
+            className={styles.adminInput}
+            name="productName"
+            id="productName"
+            value={formData.productName}
+            onChange={handleInputChange}
+            maxLength="25"
+            required
+          />
+        </label>
 
-            <label className={styles.adminLabel} htmlFor="description">Description:
-            <input className={styles.adminInput} type="text" name="description" id="description" value={formData.description} onChange={handleInputChange}  required/></label>
+        <label className={styles.adminLabel} htmlFor="description">
+          Description:
+          <input
+            className={styles.adminInput}
+            type="text"
+            name="description"
+            id="description"
+            value={formData.description}
+            onChange={handleInputChange}
+            required
+          />
+        </label>
 
-            <label className={styles.adminLabel} htmlFor="image">Image:
-            <input className={styles.adminInput} type="text" name="image" id="image" value={formData.image} onChange={handleInputChange} placeholder="URL" required/></label>
+        <label className={styles.adminLabel} htmlFor="image">
+          Image:
+          <input
+            className={styles.adminInput}
+            type="text"
+            name="image"
+            id="image"
+            value={formData.image}
+            onChange={handleInputChange}
+            placeholder="URL"
+            required
+          />
+        </label>
 
-            <label className={styles.adminLabel} htmlFor="SKU">SKU:
-            <input className={styles.adminInput} type="text" name="SKU" id="SKU" value={formData.SKU} onChange={handleInputChange}  pattern="[A-Z]{3}[0-9]{3}"
-            title="Vänligen ange i formatet: XXXYYY (ex: ABC123)" required /></label>
+        <label className={styles.adminLabel} htmlFor="SKU">
+          SKU:
+          <input
+            className={styles.adminInput}
+            type="text"
+            name="SKU"
+            id="SKU"
+            value={formData.SKU}
+            onChange={handleInputChange}
+            pattern="[A-Z]{3}[0-9]{3}"
+            title="Vänligen ange i formatet: XXXYYY (ex: ABC123)"
+            required
+          />
+        </label>
 
-            <label className={styles.adminLabel} htmlFor="price">Price:
-            <input className={styles.adminInput} type="text" name="price" id="price" value={formData.price} onChange={handleInputChange} placeholder="Price in SEK" required/></label>
+        <label className={styles.adminLabel} htmlFor="price">
+          Price:
+          <input
+            className={styles.adminInput}
+            type="text"
+            name="price"
+            id="price"
+            value={formData.price}
+            onChange={handleInputChange}
+            placeholder="Price in SEK"
+            required
+          />
+        </label>
 
-            <label className={styles.adminLabel} htmlFor="brand">Brand:
-            <input className={styles.adminInput} type="text" name="brand" id="brand" value={formData.brand} onChange={handleInputChange}  required /></label>
+        <label className={styles.adminLabel} htmlFor="brand">
+          Brand:
+          <input
+            className={styles.adminInput}
+            type="text"
+            name="brand"
+            id="brand"
+            value={formData.brand}
+            onChange={handleInputChange}
+            required
+          />
+        </label>
 
-            <label className={styles.adminLabel} htmlFor="publishDate">Publish Date:
-            <input className={styles.adminInput} type="datetime-local" name="publishDate" id="publishDate" value={formData.publishDate
-                        ? new Date(formData.publishDate * 1000)
-                              .toLocaleString("sv-SE", { timeZone: "Europe/Stockholm" }) // Konvertera till svensk tid
-                              .replace(" ", "T") // Formatet för datetime-local kräver ett "T" istället för ett mellanslag
-                        : ""} onChange={handleInputChange} placeholder="Publish Date" required /></label>
+        <label className={styles.adminLabel} htmlFor="publishDate">
+          Publish Date:
+          <input
+            className={styles.adminInput}
+            type="datetime-local"
+            name="publishDate"
+            id="publishDate"
+            value={
+              formData.publishDate
+                ? new Date(formData.publishDate * 1000)
+                    .toISOString()
+                    .slice(0, 16)
+                : ""
+            }
+            onChange={handleInputChange}
+            required
+          />
+        </label>
 
-            
-            {/*state-variabeln "formData" är ett objekt 
-            som innehåller attribut för samtliga fält i formuläret
-            objekt är en samling av flera värden (egenskaper attribut variabler)
-            variabel är ett namn på nånting där du sparar nånting*/}
-            {/*value är attribut för state-variabeln. onChange hanterar när man skriver något i input "ändringen av inputfältet".*/}
-
-            <button className={styles.adminButton} type="submit">Submit</button>
-        
-    </form>
-    
+        <button className={styles.adminButton} type="submit">
+          Submit
+        </button>
+        <div className={styles.error}>
+          {errorMessage && <p>{errorMessage}</p>} {/* Visa felmeddelandet */}
+        </div>
+      </form>
     </>
-);
-
+  );
 }
 
-export default AdminForm; 
+export default AdminForm;
