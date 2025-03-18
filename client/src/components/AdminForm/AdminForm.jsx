@@ -18,20 +18,7 @@ const [formData, setFormData] = useState ({
 
 const navigate = useNavigate();
 
-// Funktion för att konvertera ett datum till svensk tid
-const convertToSwedishTime = (date) => {
-    const options = {
-        timeZone: "Europe/Stockholm", // Svensk tidszon
-        hour12: false, // Använd 24-timmars format
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-    };
-    const formatter = new Intl.DateTimeFormat("sv-SE", options);
-    return formatter.format(date);
-};
+
 
 const handleInputChange = (event) => {
     const { name, value } = event.target;
