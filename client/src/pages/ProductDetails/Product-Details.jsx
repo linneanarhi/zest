@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Header from "../../components/Header/header";
-import Footer from "../../components/Footer/footer";
+
 import ProductInfo from "../../components/ProductDetails/ProductInfo";
 
 function ProductDetails() {
@@ -46,13 +45,13 @@ function ProductDetails() {
 
   return (
     <>
-      <Header />
+      
       {product ? (
         <ProductInfo product={product} related={related} />
       ) : (
         <p>Laddar...</p>
       )}
-      <Footer />
+      
      
       
     </>

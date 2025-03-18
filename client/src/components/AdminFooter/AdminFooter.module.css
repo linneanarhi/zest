@@ -1,0 +1,11 @@
+.copyright {
+  display: flex;
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  align-items: end;
+  background-color: #a4bdf5;
+  color: whitesmoke;
+  font-family: "Helvetica Neue 55", sans-serif;
+  height: 100px;
+}

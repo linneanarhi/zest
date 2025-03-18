@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import ProductList from "../../components/products/products";
-import Header from "../../components/Header/header";
-import Footer from "../../components/Footer/footer";
+
 import styles from "../../components/searchResult/Search.module.css";
 
 function SearchResult() {
@@ -22,7 +21,7 @@ function SearchResult() {
 
   return (
     <>
-      <Header />
+      
       <div>
         <h2 className={styles.searchH2}>Items found: {results.length}</h2>
 
@@ -32,7 +31,7 @@ function SearchResult() {
           <ProductList products={results} />
         )}
       </div>
-      <Footer />
+      
     </>
   );
 }

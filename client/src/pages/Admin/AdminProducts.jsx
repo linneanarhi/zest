@@ -6,7 +6,7 @@ function AdminProducts() {
   return (
     <>
 
-    <Header/>
+   
     <AdminList />
 
     

@@ -7,11 +7,6 @@ footer {
     font-family: 'Helvetica Neue 55', sans-serif;
 }
 
-/* .follow {
-    text-align: center;
-    padding-top: 20px;
-    font-weight: bold;
-} */
 
 .footerIcon {
     font-size: 2rem;
@@ -31,10 +26,7 @@ footer {
 
  @media (min-width: 640px) {
 
-    /* .follow {
-        font-weight: bold;
-        padding: 20px ;
-    } */
+    
 
    
 

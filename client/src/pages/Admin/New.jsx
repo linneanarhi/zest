@@ -6,9 +6,9 @@ function New() {
 
     return (
       <>
-      <Header/>
+      
       <AdminForm />
-      <Footer/>
+      
       </>
     )
   }

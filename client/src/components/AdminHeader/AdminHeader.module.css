@@ -1,0 +1,22 @@
+.imageLogo {
+    height: auto;
+    background-color: #a4bdf5;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    
+  }
+
+  .logo {
+    width: 100px;
+    height: 100px;
+  }
+
+  @media (min-width: 1024px) {
+
+  .logo {
+    width: 100%;
+    max-width: 120px; 
+    height: auto;
+  }
+}

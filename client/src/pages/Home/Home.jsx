@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import '../../App.css'
 import ProductList from '../../components/products/products';
-import Header from '../../components/Header/header';
-import Footer from '../../components/Footer/footer';
+
 import Hero from '../../components/Hero/hero';
 
 function Home() {
@@ -26,10 +25,10 @@ function Home() {
   return (
     <>
       
-        <Header/>
+        
         <Hero/>
         <ProductList products={products} />
-        <Footer/>
+        
       
     </>
   )
