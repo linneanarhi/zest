@@ -1,11 +1,10 @@
-import styles from '../AdminHeader/AdminHeader.module.css';
-import { Link } from 'react-router';
+import styles from "../AdminHeader/AdminHeader.module.css";
+import { Link } from "react-router";
 
-function AdminHeader(){
-
-    return (
-        <>
-        <div className={styles.imageLogo}>
+function AdminHeader() {
+  return (
+    <>
+      <div className={styles.imageLogo}>
         <Link className={styles.productLink} to={`/`}>
           <img
             className={styles.logo}
@@ -15,9 +14,8 @@ function AdminHeader(){
           />
         </Link>
       </div>
-      </>
-    );
+    </>
+  );
 }
 
 export default AdminHeader;
-

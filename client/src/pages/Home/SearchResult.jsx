@@ -9,7 +9,6 @@ function SearchResult() {
   const query = new URLSearchParams(location.search).get("q"); // Hämta query från URL
   const [results, setResults] = useState([]);
 
-
   useEffect(() => {
     if (!query) return;
 
@@ -21,7 +20,6 @@ function SearchResult() {
 
   return (
     <>
-      
       <div>
         <h2 className={styles.searchH2}>Items found: {results.length}</h2>
 
@@ -31,7 +29,6 @@ function SearchResult() {
           <ProductList products={results} />
         )}
       </div>
-      
     </>
   );
 }

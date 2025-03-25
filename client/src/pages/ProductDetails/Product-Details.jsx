@@ -15,9 +15,9 @@ function ProductDetails() {
   // Första useEffect för att hämta produktdata
   useEffect(() => {
     console.log("Product slug från URL:", params.slug); // Kontrollera att det inte är undefined
-  
+
     if (!params.slug) return;
-  
+
     fetch(`/api/products/${params.slug}`) // Fetch till produktdetails-API
       .then((response) => response.json())
       .then((data) => {
@@ -45,19 +45,13 @@ function ProductDetails() {
 
   return (
     <>
-      
       {product ? (
         <ProductInfo product={product} related={related} />
       ) : (
         <p>Laddar...</p>
       )}
-      
-     
-      
     </>
   );
 }
 
 export default ProductDetails;
-
-

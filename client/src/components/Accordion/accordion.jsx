@@ -1,20 +1,20 @@
-import styles from './accordion.module.css';
-import { useState } from 'react';
+import styles from "./accordion.module.css";
+import { useState } from "react";
 
 function Accordion() {
   const accordionData = [
     {
-      title: 'About',
-      content: ['Our story', 'Social Media']
+      title: "About",
+      content: ["Our story", "Social Media"],
     },
     {
-      title: 'My pages',
-      content: ['Log in']
+      title: "My pages",
+      content: ["Log in"],
     },
     {
-      title: 'Contact',
-      content: ['Return Policy', 'Contact Us']
-    }
+      title: "Contact",
+      content: ["Return Policy", "Contact Us"],
+    },
   ];
 
   const [activeIndex, setActiveIndex] = useState(null);
@@ -22,8 +22,6 @@ function Accordion() {
   const toggleAccordion = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
-
-  
 
   return (
     <div className={styles.accordion}>
@@ -34,7 +32,7 @@ function Accordion() {
             onClick={() => toggleAccordion(index)}
           >
             <div>{item.title}</div>
-            <div>{activeIndex === index ? '-' : '+'}</div>
+            <div>{activeIndex === index ? "-" : "+"}</div>
           </div>
           {activeIndex === index && (
             <div className={styles.accordionContent}>

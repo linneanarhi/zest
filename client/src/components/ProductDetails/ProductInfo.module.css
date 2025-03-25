@@ -1,16 +1,14 @@
-.ProductInfo{
+.ProductInfo {
   display: flex;
   flex-direction: column;
   text-align: center;
-  
 }
 
 h1 {
   font-size: 24px;
 }
-  
-.productImg{
-  
+
+.productImg {
   padding: 20px;
   align-items: center;
 }
@@ -19,7 +17,6 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 20px;
-
 }
 
 .addProduct {
@@ -27,7 +24,6 @@ h1 {
   flex-direction: row;
   gap: 20px;
   justify-content: center;
-
 }
 
 .Shopping {
@@ -42,7 +38,6 @@ h1 {
   padding: 5px 10px;
   cursor: pointer;
   border-radius: 5px;
-  
 }
 
 .addProduct button:disabled {
@@ -60,124 +55,109 @@ h1 {
   transition: background-color 0.3s ease;
 }
 
-
-
 /* FontAwesome hjärta */
 .addProduct svg {
   font-size: 24px;
-  color: #29885E; /* Tomatfärgad hjärta */
+  color: #29885e;
   cursor: pointer;
   transition: color 0.3s ease;
 }
 
 .addProduct svg:hover {
-  color: #66b08e; /* Ändrar färg vid hover */
+  color: #66b08e;
 }
-  
+
+.relatedProductsGrid {
+  display: none;
+}
+
+.relatedText {
+  margin-top: 30px;
+  text-align: center;
+  color: black;
+  font-size: 18px;
+}
+
+:global(.slick-slider) {
+  max-width: 90%;
+  margin: auto;
+}
+
+:global(.slick-prev),
+:global(.slick-next) {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+}
+
+:global(.slick-dots button:before) {
+  color: #ccc;
+  margin-bottom: 10px;
+}
+
+:global(.slick-dots li.slick-active button:before) {
+  color: black;
+}
+
+.relatedSlider {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.slideInfo {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.linkStyle {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+@media (min-width: 640px) {
+  .ProductInfo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .productImg {
+    width: 100%;
+    height: auto;
+  }
+
+  .ProductDetails {
+    margin: 20px;
+  }
+
+  .relatedProduct {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (width >= 1024px) {
+  .productImg {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+  }
 
   .relatedProductsGrid {
-    display: none;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    width: 100%;
+    justify-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
   }
 
-  .relatedText {
-    margin-top: 30px;
-    text-align: center;
-    color: black;
-    font-size: 18px;
+  .relatedImg img {
+    width: 100%;
+    height: auto;
   }
-
-
-  :global(.slick-slider) {
-    max-width: 90%;
-    margin: auto;
-  }
-  
-  :global(.slick-prev), :global(.slick-next) {
-    background-color: #333;
-    color: white;
-    padding: 10px;
-  }
-
-  
-  :global(.slick-dots button:before) {
-    color: #ccc;
-    margin-bottom: 10px;
-  }
-  
-  :global(.slick-dots li.slick-active button:before) {
-    color: black;
-   
-  }
-
-  .relatedSlider {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    
-  }
-  
-  .slideInfo {
-    margin-top: 10px;
-    font-size: 14px;
-  }
-
-  .linkStyle {
-    text-decoration: none; /* Tar bort understrykning */
-    color: inherit; /* Ärver textfärg istället för blå */
-    display: block; /* Behåller layout */
-  }
-  
-
-  @media (min-width: 640px){
-
-
-    .ProductInfo {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      justify-content: center;
-      width: 100%;
-      
-    }
-
-    .productImg {
-      width: 100%;
-      height: auto;
-    }
-
-    .ProductDetails {
-      margin: 20px;
-    }
-  
-    .relatedProduct {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-  }
-  @media (width >= 1024px) {
-
-    .productImg {
-      width: 100%;
-      height: 100vh;
-      object-fit: cover;
-    }
-
-    .relatedProductsGrid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr); 
-      gap: 20px; 
-      width: 100%;
-      justify-items: center; 
-      padding: 0 20px;
-      box-sizing: border-box; 
-    }
-
-    .relatedImg img {
-      width: 100%;
-      height: auto;
-    }
-
-   
-
-  
-  }
+}

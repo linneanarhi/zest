@@ -1,17 +1,12 @@
-import AdminList from '../../components/AdminList/AdminList';
-import Header from '../../components/Header/header'
+import AdminList from "../../components/AdminList/AdminList";
+
 
 function AdminProducts() {
-
   return (
     <>
-
-   
-    <AdminList />
-
-    
+      <AdminList />
     </>
-  )
+  );
 }
 
 export default AdminProducts;
