@@ -1,92 +1,94 @@
 .videoContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: #29885e;
+  color: whitesmoke;
+  text-align: center;
+}
+
+.videoPlayer {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.inspoProduct {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .videoContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+
+  .heroText {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin: 10px;
-    padding: 10px;
-    box-sizing: border-box; 
-    overflow: hidden; 
-    background-color: #29885E; 
-    color: whitesmoke;
-    text-align: center;
-  }
-  
-  .videoPlayer {
     width: 100%;
+  }
+
+  .heroText h1 {
+    font-size: 2.5em;
+  }
+
+  .heroText p {
+    align-self: center;
+    max-width: 500px;
+    font-size: 1em;
+  }
+
+  .videoPlayer {
+    width: 50%;
     height: 100%;
-    object-fit: cover; 
+    object-fit: cover;
   }
 
   .inspoProduct {
-    display: none;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
   }
 
-  @media (min-width: 1024px) {
-
-    .videoContainer {
-        display: flex;
-        flex-direction: row-reverse;
-        justify-content: space-between;
-    }
-  
-    .heroText {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        width: 100%;
-    }
-  
-    .heroText h1 {
-        font-size: 2.5em;
-    }
-  
-    .heroText p {
-        align-self: center;
-        max-width: 500px;
-        font-size: 1em;
-    }
-
-    .videoPlayer {
-      width: 50%;
-      height: 100%;
-      object-fit: cover; 
-    }
-    
-    .inspoProduct {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: nowrap;
-    }
-    
-    .inspoItem {
-      position: relative; /* Viktigt för att kunna positionera overlayen på varje bild */
-      width: 31%; /* Justera bredden som du vill på varje bild */
-    }
-    
-    .inspoItem img {
-      width: 100%; /* Gör bilderna att ta upp 100% av bredden i sin container */
-      height: auto;
-      object-fit: cover; /* Ser till att bilderna täcker hela containern */
-     
-    }
-    
-    /* Style för overlay */
-    .inspoOverlay {
-      position: absolute; /* Placerar overlayen ovanpå bilden */
-      top: 0;
-      left: 0;
-      width: 100%; /* Gör overlayen lika bred som bilden */
-      height: 100%; /* Gör overlayen lika hög som bilden */
-      backdrop-filter: blur(1px); /* Applicerar blur på bakgrunden (bilden) */
-      background-color: rgba(240, 248, 255, 0.555); /* Bakgrundsfärg med transparens */
-      display: flex;
-      justify-content: center; /* Centrerar texten horisontellt */
-      align-items: center; /* Centrerar texten vertikalt */
-      color: black; /* Textfärg */
-      font-size: 18px;
-      font-weight: bold;
-      
-    }
+  .inspoItem {
+    position: relative; 
+    width: 31%; 
   }
+
+  .inspoItem img {
+    width: 100%; 
+    height: auto;
+    object-fit: cover; 
+  }
+
+  /* Style för overlay */
+  .inspoOverlay {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%; 
+    height: 100%; 
+    backdrop-filter: blur(1px); 
+    background-color: rgba(
+      240,
+      248,
+      255,
+      0.555
+    ); 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+  }
+}

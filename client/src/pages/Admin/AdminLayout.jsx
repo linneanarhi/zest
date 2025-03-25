@@ -5,7 +5,9 @@ import AdminFooter from "../../components/AdminFooter/AdminFooter";
 function AdminLayout() {
   return (
     <>
-      <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+      <div
+        style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
+      >
         <AdminHeader />
         <main style={{ flex: 1 }}>
           <Outlet />

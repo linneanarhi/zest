@@ -1,30 +1,29 @@
 .productList {
-    width: 70%; /* Se till att både adminTop och table har samma bredd */
-    margin: 0 auto; /* Centrera hela sektionen */
+  width: 70%;
+  margin: 0 auto;
 }
 
 .adminTop {
-    display: flex;
-    justify-content: space-between; /* Gör att h2 och knappen ligger på samma rad */
-    align-items: center;
-    width: 80%;
-    margin: 20px auto; /* Centrerar tabellen */
-    margin-bottom: 10px; /* Lägg lite avstånd mellan adminTop och tabellen */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: 20px auto;
+  margin-bottom: 10px;
 }
 
 .adminH2 {
-    color: black;
-    padding: 10px;
-    
+  color: black;
+  padding: 10px;
 }
 
 .adminTop button {
-    padding: 8px 12px;
-    background: linear-gradient(135deg, #494a4a, #5a5b5b);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  padding: 8px 12px;
+  background: linear-gradient(135deg, #494a4a, #5a5b5b);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .adminTop button:hover {
@@ -32,61 +31,53 @@
 }
 
 table {
-    width: 80%; /* Gör tabellen bred men inte hela skärmen */
-    margin: 20px auto; /* Centrerar tabellen */
-    border-collapse: separate; /* Tar bort dubbelkantade borders */
-    border-spacing: 0;
-    box-shadow: 0px 0px 8px rgba(0, 123, 255, 0.2); /* Lägger till en subtil skugga */
-    border-radius: 8px;
-    overflow: hidden;
-    
-  }
-  
-  thead {
-    background-color: #fafafa; /* Ljusgrå bakgrund på header */
-    color: #3b3b3b;
-    
-  }
-  
-  th, td {
-    border: 1px solid rgba(107, 106, 106, 0.806); /* Tydliga svarta borders */
-    padding: 10px; /* Ger utrymme i cellerna */
-    text-align: left; /* Text till vänster */
-    color: #3b3b3b;
-   
-  }
-
-  .deletebtn {
-    cursor: pointer;
-  }
-
-  td:last-child {
-    text-align: right; /* Flytta innehållet (knappen) till höger */
-    
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  box-shadow: 0px 0px 8px rgba(0, 123, 255, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-  thead tr:first-child th:first-child {
-    border-top-left-radius: 8px;
+thead {
+  background-color: #fafafa;
+  color: #3b3b3b;
+}
+
+th,
+td {
+  border: 1px solid rgba(107, 106, 106, 0.806);
+  padding: 10px;
+  text-align: left;
+  color: #3b3b3b;
+}
+
+.deletebtn {
+  cursor: pointer;
+}
+
+td:last-child {
+  text-align: right;
+}
+
+thead tr:first-child th:first-child {
+  border-top-left-radius: 8px;
 }
 thead tr:first-child th:last-child {
-    border-top-right-radius: 8px;
+  border-top-right-radius: 8px;
 }
 tbody tr:last-child td:first-child {
-    border-bottom-left-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 tbody tr:last-child td:last-child {
-    border-bottom-right-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
-  
-  tbody{
-    background-color:  #fafafa; 
-  }
+tbody {
+  background-color: #fafafa;
+}
 
-/*   tbody tr:nth-child(odd) {
-    background-color: #eae9e9; 
-  } */
-  
-  tbody tr:hover {
-    background-color: #dce5f8; /* Ljusgrå hover-effekt */
-  }
+tbody tr:hover {
+  background-color: #dce5f8;
+}

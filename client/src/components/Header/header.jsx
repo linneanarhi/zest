@@ -94,7 +94,11 @@ function Header() {
             className={styles.iconSearch}
             onClick={() => setSearchOpen(!searchOpen)}
           >
-            {searchOpen ? "X" : <FontAwesomeIcon icon={faMagnifyingGlass} title="Search" />}
+            {searchOpen ? (
+              "X"
+            ) : (
+              <FontAwesomeIcon icon={faMagnifyingGlass} title="Search" />
+            )}
           </div>
         </div>
 
