@@ -37,7 +37,7 @@ function Header() {
           <ul>
             <li>New In</li>
             <li>Interior</li>
-            <li>Lightning</li>
+            <li>Lighting</li>
             <li>Furniture</li>
           </ul>
         </div>
@@ -102,7 +102,7 @@ function Header() {
         <ul className={`${styles["navbarMenu"]} ${isOpen ? styles.open : ""}`}>
           <li>New In</li>
           <li>Interior</li>
-          <li>Lightning</li>
+          <li>Lighting</li>
           <li>Furniture</li>
         </ul>
       </nav>

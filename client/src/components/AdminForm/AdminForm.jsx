@@ -11,11 +11,13 @@ function AdminForm() {
     price: "",
     brand: "",
     publishDate: "",
+    category: "Lighting",
   });
 
-  const [errorMessage, setErrorMessage] = useState(""); // Ny state för felmeddelande
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
+  // Hanterar förändringar i input
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
@@ -27,9 +29,10 @@ function AdminForm() {
     }
   };
 
+  // Hanterar submit
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setErrorMessage(""); // Nollställ felmeddelandet vid varje försök
+    setErrorMessage("");
 
     try {
       const response = await fetch("/api/products", {
@@ -38,12 +41,13 @@ function AdminForm() {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json(); // Läs API-responsen
+      const data = await response.json();
 
       if (!response.ok) {
         throw new Error(data.message || "Something went wrong");
       }
 
+      // Återställer formuläret
       setFormData({
         productName: "",
         description: "",
@@ -52,11 +56,12 @@ function AdminForm() {
         price: "",
         brand: "",
         publishDate: "",
+        category: "Lighting",
       });
 
-      navigate("/admin/adminproducts"); // Omdirigera endast vid lyckad inläggning
+      navigate("/admin/adminproducts");
     } catch (error) {
-      setErrorMessage(error.message); // Sätt felmeddelandet i state
+      setErrorMessage(error.message);
     }
   };
 
@@ -148,6 +153,22 @@ function AdminForm() {
           />
         </label>
 
+        <label className={styles.adminLabel} htmlFor="category">
+          Category:
+          <select
+            className={styles.adminInput}
+            name="category"
+            id="category"
+            value={formData.category}
+            onChange={handleInputChange}
+            required
+          >
+            <option value="Lighting">Lighting</option>
+            <option value="Interior">Interior</option>
+            <option value="Furniture">Furniture</option>
+          </select>
+        </label>
+
         <label className={styles.adminLabel} htmlFor="publishDate">
           Publish Date:
           <input
@@ -171,7 +192,7 @@ function AdminForm() {
           Submit
         </button>
         <div className={styles.error}>
-          {errorMessage && <p>{errorMessage}</p>} {/* Visa felmeddelandet */}
+          {errorMessage && <p>{errorMessage}</p>} 
         </div>
       </form>
     </>
