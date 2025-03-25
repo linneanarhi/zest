@@ -58,22 +58,21 @@ app.get("/api/products", (req, res) => {
 
 // Hämta relaterade produkter
 app.get("/api/related-products", (req, res) => {
-  const { category, excludeSlug } = req.query;
+  const { category, excludeProductName } = req.query;
 
-  if (!category || !excludeSlug) {
+  if (!category || !excludeProductName) {
     return res
       .status(400)
-      .json({ error: "Category and excludeSlug are required" });
+      .json({ error: "Category and excludeProductName are required" });
   }
 
   const select = db.prepare(`
     SELECT id, productName, description, image, SKU, price, brand, category, publishDate 
     FROM products
-    WHERE category = ? AND productName != ?
-    ORDER BY RANDOM()
+    WHERE category = ? AND productName NOT LIKE ?
   `);
 
-  const relatedProducts = select.all(category, excludeSlug);
+  const relatedProducts = select.all(category, `%${excludeProductName}%`);
 
   relatedProducts.forEach((product) => {
     product.slug = createSlug(product.productName);
