@@ -21,26 +21,25 @@ function createSlug(productName) {
 }
 
 // Till startsidan
-
 app.get("/api/products", (req, res) => {
   // Hämta senaste 7 dagarna
   const recentSelect = db.prepare(`
-        SELECT id, productName, description, image, SKU, price, brand, publishDate 
-        FROM products 
-        WHERE publishDate >= ? 
-        ORDER BY publishDate DESC 
-    `);
+    SELECT id, productName, description, image, SKU, price, brand, publishDate 
+    FROM products 
+    WHERE publishDate >= ? 
+    ORDER BY publishDate DESC 
+  `);
 
   const sevenDaysAgo = Math.floor(Date.now() / 1000) - 7 * 24 * 60 * 60;
   const recentProducts = recentSelect.all(sevenDaysAgo);
 
   // Hämta äldre produkter
   const olderSelect = db.prepare(`
-        SELECT id, productName, description, image, SKU, price, brand, publishDate 
-        FROM products 
-        WHERE publishDate < ? 
-        ORDER BY RANDOM () 
-    `);
+    SELECT id, productName, description, image, SKU, price, brand, publishDate 
+    FROM products 
+    WHERE publishDate < ? 
+    ORDER BY RANDOM() 
+  `);
 
   const olderProducts = olderSelect.all(sevenDaysAgo);
 
@@ -57,46 +56,53 @@ app.get("/api/products", (req, res) => {
   res.json(limitedProducts);
 });
 
-// Sökresultat
-app.get("/api/search", (req, res) => {
-  const query = req.query.q;
-  if (!query) {
-    return res.status(400).json({ error: "Ingen sökfråga angiven" });
+// Hämta relaterade produkter
+app.get("/api/related-products", (req, res) => {
+  const { category, excludeSlug } = req.query;
+
+  if (!category || !excludeSlug) {
+    return res
+      .status(400)
+      .json({ error: "Category and excludeSlug are required" });
   }
 
-  const select = db.prepare(
-    "SELECT id, productName, description, image, SKU, price, brand, publishDate FROM products WHERE productName LIKE ?"
-  );
-  const products = select.all(`%${query}%`);
+  const select = db.prepare(`
+    SELECT id, productName, description, image, SKU, price, brand, category, publishDate 
+    FROM products
+    WHERE category = ? AND productName != ?
+    ORDER BY RANDOM()
+  `);
 
-  products.forEach((product) => {
+  const relatedProducts = select.all(category, excludeSlug);
+
+  relatedProducts.forEach((product) => {
     product.slug = createSlug(product.productName);
-    console.log("Generated slug:", product.slug);
   });
 
-  res.json(products);
+  res.json(relatedProducts);
 });
 
 // Till detaljsidan
 app.get("/api/products/:slug", (req, res) => {
   const slug = req.params.slug;
-  const select = db.prepare(
-    "SELECT id, productName, description, image, SKU, price, brand, publishDate FROM products"
-  );
+
+  const select = db.prepare(`
+    SELECT id, productName, description, image, SKU, price, brand, category, publishDate 
+    FROM products
+  `);
   const products = select.all();
 
   const product = products.find((p) => createSlug(p.productName) === slug);
 
-  console.log(
-    `Genererad slug: ${product.slug} för produkt: ${product.productName}`
-  );
-  if (product) {
-    res.json(product);
-  } else {
-    res.status(404).json({ error: "Produkt inte hittad" });
+  if (!product) {
+    return res.status(404).json({ error: "Produkt inte hittad" });
   }
 
-  res.json(products);
+  const relatedProducts = products.filter(
+    (p) => p.category === product.category && p.id !== product.id
+  );
+
+  res.json({ product, relatedProducts });
 });
 
 // Admin formulär
