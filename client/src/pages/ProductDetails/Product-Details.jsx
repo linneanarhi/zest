@@ -38,7 +38,7 @@ function ProductDetails() {
     if (!product || !product.category) return;
 
     fetch(
-      `/api/related-products?category=${product.category}&excludeSlug=${params.slug}`
+      `/api/related-products?category=${product.category}&excludeProductName=${product.productName}`
     )
       .then((response) => response.json())
       .then((data) => {
