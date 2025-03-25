@@ -1,132 +1,155 @@
-
 const bodyParser = require("body-parser");
 const express = require("express");
 const Database = require("better-sqlite3");
 const port = 8000;
-const app = express(); //Här är expressapplikationen vi skapat
+const app = express();
 
 const db = new Database("./db/products.db", {
-    verbose: console.log
+  verbose: console.log,
 });
 
-//parsar JSON som skickas till backend och gör informationen t
-//illgänglig via req.body inuti route. 
-app.use(bodyParser.json()); 
+app.use(bodyParser.json());
 
 function createSlug(productName) {
-    return productName.toLowerCase()
-        .replace(/\s+/g, '-')  // Ersätt mellanslag med bindestreck
-        .replace(/[^\w\-]+/g, '') // Ta bort icke-alfanumeriska tecken
-        .replace(/\-\-+/g, '-') // Ta bort dubbla bindestreck
-        .replace(/^-+/, '') // Ta bort bindestreck i början
-        .replace(/-+$/, ''); // Ta bort bindestreck i slutet
+  return productName
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^\w\-]+/g, "")
+    .replace(/\-\-+/g, "-")
+    .replace(/^-+/, "")
+    .replace(/-+$/, "");
 }
 
-
-//till startsidan
-
+// Till startsidan
 app.get("/api/products", (req, res) => {
+  // Hämta senaste 7 dagarna
+  const recentSelect = db.prepare(`
+    SELECT id, productName, description, image, SKU, price, brand, publishDate 
+    FROM products 
+    WHERE publishDate >= ? 
+    ORDER BY publishDate DESC 
+  `);
 
-    // Hämta nyaste produkterna (publicerade inom de senaste 7 dagarna)
-    const recentSelect = db.prepare(`
-        SELECT id, productName, description, image, SKU, price, brand, publishDate 
-        FROM products 
-        WHERE publishDate >= ? 
-        ORDER BY publishDate DESC 
-    `);
+  const sevenDaysAgo = Math.floor(Date.now() / 1000) - 7 * 24 * 60 * 60;
+  const recentProducts = recentSelect.all(sevenDaysAgo);
 
-    const sevenDaysAgo = Math.floor(Date.now() / 1000) - (7 * 24 * 60 * 60); // Unix-tid för 7 dagar sedan
-    const recentProducts = recentSelect.all(sevenDaysAgo); // Hämta produkter publicerade senaste 7 dagarna
+  // Hämta äldre produkter
+  const olderSelect = db.prepare(`
+    SELECT id, productName, description, image, SKU, price, brand, publishDate 
+    FROM products 
+    WHERE publishDate < ? 
+    ORDER BY RANDOM() 
+  `);
 
-    // Hämta äldre produkter (de som inte är nyheter)
-    const olderSelect = db.prepare(`
-        SELECT id, productName, description, image, SKU, price, brand, publishDate 
-        FROM products 
-        WHERE publishDate < ? 
-        ORDER BY RANDOM () 
-    `);
+  const olderProducts = olderSelect.all(sevenDaysAgo);
 
-    const olderProducts = olderSelect.all(sevenDaysAgo); // Hämta äldre produkter (publicerade före 7 dagar)
+  const allProducts = [...recentProducts, ...olderProducts];
+  const limitedProducts = allProducts.slice(0, 8);
 
-    // Kombinera de nyaste produkterna och de slumpmässigt ordnade äldre produkterna
-    const allProducts = [...recentProducts, ...olderProducts];
-    const limitedProducts = allProducts.slice(0, 8);
+  limitedProducts.forEach((product) => {
+    product.slug = createSlug(product.productName);
+    console.log(
+      `Genererad slug: ${product.slug} för produkt: ${product.productName}`
+    );
+  });
 
-    
-
-    limitedProducts.forEach(product => {
-        product.slug = createSlug(product.productName);
-        console.log(`Genererad slug: ${product.slug} för produkt: ${product.productName}`);
-    });
-
-    // Skicka tillbaka produkterna
-    res.json(limitedProducts);
+  res.json(limitedProducts);
 });
 
+// Hämta relaterade produkter
+app.get("/api/related-products", (req, res) => {
+  const { category, excludeSlug } = req.query;
 
-//sökresultat
-app.get("/api/search", (req, res) => {
-    const query = req.query.q; // Hämta sökfrågan från frontend
-    if (!query) {
-        return res.status(400).json({ error: "Ingen sökfråga angiven" });
-    }
+  if (!category || !excludeSlug) {
+    return res
+      .status(400)
+      .json({ error: "Category and excludeSlug are required" });
+  }
 
-    const select = db.prepare("SELECT id, productName, description, image, SKU, price, brand, publishDate FROM products WHERE productName LIKE ?");
-    const products = select.all(`%${query}%`); // Hämta produkter som matchar sökningen
+  const select = db.prepare(`
+    SELECT id, productName, description, image, SKU, price, brand, category, publishDate 
+    FROM products
+    WHERE category = ? AND productName != ?
+    ORDER BY RANDOM()
+  `);
 
-        // Generera slug för varje produkt
-    products.forEach((product) => {
-        product.slug = createSlug(product.productName); // Skapa slug baserat på produktnamnet
-        console.log("Generated slug:", product.slug); // Kontrollera vad som genereras
-    });
+  const relatedProducts = select.all(category, excludeSlug);
 
-    res.json(products);
+  relatedProducts.forEach((product) => {
+    product.slug = createSlug(product.productName);
+  });
+
+  res.json(relatedProducts);
 });
 
-
-
-//till detaljsidan
+// Till detaljsidan
 app.get("/api/products/:slug", (req, res) => {
-    const slug = req.params.slug; 
-    const select = db.prepare("SELECT id, productName, description, image, SKU, price, brand, publishDate FROM products");
-    const products = select.all();
-    
-    
-    const product = products.find(p => createSlug(p.productName) === slug);
-    
-    console.log(`Genererad slug: ${product.slug} för produkt: ${product.productName}`);
-    if (product) {
-        res.json(product); 
-    } else {
-        res.status(404).json({ error: "Produkt inte hittad" }); 
-    }
+  const slug = req.params.slug;
 
+  const select = db.prepare(`
+    SELECT id, productName, description, image, SKU, price, brand, category, publishDate 
+    FROM products
+  `);
+  const products = select.all();
 
+  const product = products.find((p) => createSlug(p.productName) === slug);
 
-    res.json(products);
+  if (!product) {
+    return res.status(404).json({ error: "Produkt inte hittad" });
+  }
+
+  const relatedProducts = products.filter(
+    (p) => p.category === product.category && p.id !== product.id
+  );
+
+  res.json({ product, relatedProducts });
 });
 
-
-//admin formulär
-app.post('/api/products', (req, res) => {
-    const { productName, description, image, SKU, price, brand, publishDate } = req.body;
-    const product = { productName, description, image, SKU, price, brand, publishDate };
-    const existingProduct = db.prepare(`
+// Admin formulär
+app.post("/api/products", (req, res) => {
+  const {
+    productName,
+    description,
+    image,
+    SKU,
+    price,
+    brand,
+    category,
+    publishDate,
+  } = req.body;
+  const product = {
+    productName,
+    description,
+    image,
+    SKU,
+    price,
+    brand,
+    category,
+    publishDate,
+  };
+  const existingProduct = db
+    .prepare(
+      `
         SELECT * FROM products WHERE productName = ? OR image = ?
-        `).get(productName, image);
+        `
+    )
+    .get(productName, image);
 
-        if (existingProduct) {
-            return res.status(400).json({ message: "Product Name or URL already exists."});
-        }
+  if (existingProduct) {
+    return res
+      .status(400)
+      .json({ message: "Product Name or URL already exists." });
+  }
 
-    const insert = db.prepare(`
+  const insert = db.prepare(`
         INSERT INTO products (
         productName, 
         description, 
         image, 
         SKU, 
         price, 
-        brand, 
+        brand,
+        category, 
         publishDate
         ) VALUES (
         @productName, 
@@ -135,38 +158,39 @@ app.post('/api/products', (req, res) => {
         @SKU, 
         @price, 
         @brand, 
+        @category,
         @publishDate
         )
     `);
 
+  insert.run(product);
 
-    insert.run(product);
-
-    res.status(201).json({ message: "Product added."})
+  res.status(201).json({ message: "Product added." });
 });
 
-
-//admin lista
+// Admin lista
 app.get("/api/adminproducts", (req, res) => {
-    const select = db.prepare("SELECT id, productName, SKU, price FROM products ORDER BY publishDate DESC");
-    const products = select.all();
+  const select = db.prepare(
+    "SELECT id, productName, SKU, price FROM products ORDER BY publishDate DESC"
+  );
+  const products = select.all();
 
-    res.json(products);
+  res.json(products);
 });
 
 app.delete("/api/adminproducts/:id", (req, res) => {
-    const { id } = req.params;
-    
-    const deleteStmt = db.prepare("DELETE FROM products WHERE id = ?");
-    const result = deleteStmt.run(id);
+  const { id } = req.params;
 
-    if (result.changes > 0) {
-        res.json({ success: true, message: "Product deleted successfully" });
-    } else {
-        res.status(404).json({ success: false, message: "Product not found" });
-    }
+  const deleteStmt = db.prepare("DELETE FROM products WHERE id = ?");
+  const result = deleteStmt.run(id);
+
+  if (result.changes > 0) {
+    res.json({ success: true, message: "Product deleted successfully" });
+  } else {
+    res.status(404).json({ success: false, message: "Product not found" });
+  }
 });
 
-app. listen(port, () => {
-    console.log("Server started on port 8000");
+app.listen(port, () => {
+  console.log("Server started on port 8000");
 });
