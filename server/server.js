@@ -56,6 +56,26 @@ app.get("/api/products", (req, res) => {
   res.json(limitedProducts);
 });
 
+
+app.get("/api/search", (req, res) => {
+  const query = req.query.q;
+
+  if (!query) {
+    return res.status(400).json({ error: "Query parameter 'q' is required" });
+  }
+
+  const searchStmt = db.prepare(`
+    SELECT id, productName, description, image, SKU, price, brand, category, publishDate 
+    FROM products
+    WHERE productName LIKE ? OR description LIKE ?
+  `);
+  
+  const results = searchStmt.all(`%${query}%`, `%${query}%`);
+
+  res.json(results);
+});
+
+
 // Hämta relaterade produkter
 app.get("/api/related-products", (req, res) => {
   const { category, excludeProductName } = req.query;
