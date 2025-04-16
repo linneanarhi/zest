@@ -69,11 +69,16 @@ app.get("/api/search", (req, res) => {
     FROM products
     WHERE productName LIKE ? OR description LIKE ?
   `);
-  
-  const results = searchStmt.all(`%${query}%`, `%${query}%`);
+
+  const results = searchStmt.all(`%${query}%`, `%${query}%`).map((product) => ({
+    ...product,
+    slug: createSlug(product.productName),
+  }));
 
   res.json(results);
 });
+
+
 
 
 // Hämta relaterade produkter
