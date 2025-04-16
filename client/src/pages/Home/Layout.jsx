@@ -7,7 +7,7 @@ const Layout = () => {
     <>
       <Header />
       <main>
-        <Outlet /> {/* Här renderas innehållet för den aktuella sidan */}
+        <Outlet /> 
       </main>
       <Footer />
     </>
