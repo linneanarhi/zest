@@ -25,7 +25,7 @@ function PageTitle() {
     document.title = titles[location.pathname] || "ZEST";
   }, [location]);
 
-  return null; // Komponentens enda uppgift är att sätta titeln
+  return null; 
 }
 
 function App() {
@@ -42,7 +42,6 @@ function App() {
             <Route path="/checkout" element={<Checkout />} />
           </Route>
 
-          {/* Layout för Admin-sidor */}
           <Route element={<AdminLayout />}>
             <Route path="/admin/adminproducts" element={<AdminProducts />} />
             <Route path="/admin/new" element={<New />} />

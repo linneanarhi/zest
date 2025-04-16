@@ -34,7 +34,7 @@ function Hero({ videoSrc, images }) {
             Explore curated designs that blend functionality with timeless
             beauty. From bold statements to minimalist essentials, our
             collection from ZEST brings Scandinavian elegance to every room. Let
-            your space reflect your unique style with pieces that inspire.{" "}
+            your space reflect your unique style with pieces that inspire.
           </p>
         </div>
       </div>
